@@ -1,25 +1,37 @@
 import socket
+import threading
 
-def main():
 
-	host = "localhost"
-	port = 8000
+class ClientThread(threading.Thread):
 
-	sock = socket.socket()
-	sock.bind((host,port))
+    def __init__(self, ip, port):
+        threading.Thread.__init__(self)
+        self.ip = ip
+        self.port = port
+        print "Message source: %s:%s" % (ip, str(port))
 
-	sock.listen(5)
-	conn, addr = sock.accept()
-	
-	while True:
-		msg = conn.recv(1024).decode()
-		if not msg:
-			break
-		print ("Client message: " + str(msg))
-		msg = msg + "!"
-		conn.send(msg.encode())
-	conn.close()
+    def run(self):
+        while True:
+            data = conn.recv(2048)
+            print "Server received data:", data
+            MESSAGE = raw_input("Message response: ")
+            if MESSAGE == 'exit':
+                break
+            conn.send(MESSAGE)
 
-if __name__ == '__main__':
-	main()
+host = 'localhost'
+port = 8000
 
+sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+sock.bind((host, port))
+threads = []
+
+while True:
+    s.listen(5)
+    (conn, (ip, port)) = s.accept()
+    newthread = ClientThread(ip, port)
+    newthread.start()
+    threads.append(newthread)
+
+for t in threads:
+    t.join()

@@ -7,16 +7,15 @@ def main():
 		s = socket.socket()
 		s.connect((host,port))
 		
-		message = input("Message: ")
+		message = raw_input("Message: ")
 		
 		while message != 'q':
 				s.send(message.encode())
 				data = s.recv(1024).decode()
 				
 				print ('Received from server: ' + data)
-				message = input("Message: ")
+				message = raw_input("Message: ")
 		s.close()
  
 if __name__ == '__main__':
 	main()
-
