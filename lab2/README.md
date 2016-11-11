@@ -3,5 +3,5 @@ Distro Lab 2: Construct a multithreaded skeleton TCP server
 
 Files:
 	- compile.sh
+        - start.sh
 	- server.py
-	- client.py
