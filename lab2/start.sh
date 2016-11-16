@@ -1,5 +1,3 @@
 #!/bin/bash
 
-echo $1
-
-#python server.py
+python server.py $1
