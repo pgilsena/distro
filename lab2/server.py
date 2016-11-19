@@ -1,12 +1,13 @@
+#!/usr/bin/env python
 import logging
 import socket
 import sys
 import threading
 
 s_num = 13325655
-threads = []
 
 class ThreadedServer(object):
+    threads = []
 
     def __init__(self, ip, port):
         logging.info("Creating server socket...")
@@ -18,7 +19,6 @@ class ThreadedServer(object):
         logging.info("Server socket created")
 
     def serverListen(self):
-        global threads
         self.sock.listen(5)
         logging.info("Listening...")
         try:
@@ -28,7 +28,6 @@ class ThreadedServer(object):
             newthread.start()
             logging.info("New thread has started")
             threads.append(newthread)
-            logging.info("New threaded appended")
         except:
             logging.info("Server no longer running")
             return
@@ -44,11 +43,10 @@ class ThreadedServer(object):
                 conn.send(response)
             else:
                 logging.info("Message: %s" % msg[:-1])
-                self.close_everything()
+                self.closeEverything()
                 return
 
-    def close_everything(self):
-        global threads
+    def closeEverything(self):
         for t in threads:
             t.join()
         logging.info("Joined all threads")
