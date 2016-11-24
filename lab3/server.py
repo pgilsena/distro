@@ -8,30 +8,20 @@ import threading
 
 s_num = 13325655
 ALIVE = True
-ROOMS = [] # list of Room objects?
-USERS = [] #
-ROOMS_AND_USERS = []
+ROOMS = []
+USERS = []
 
 
 class User():
     def __init__(self, name, conn):
         self.name = name
         self.conn = conn
-        self.join_id = 0#len(USERS)
+        self.join_id = 0
 
     def updateUser(self, name):
         global USERS
         self.name = name
         self.join_id = len(USERS)
-
-    # def createUser(self, client_name):
-    #     global USERS
-
-    #     logging.error("USER: Creating new user")
-    #     USERS.append(self)
-    #     #idx = len(USERS)
-    #     #USERS.append([idx, client_name, self.conn]) # fix this
-    #     return [idx, client_name]
 
     def deleteUser():
         # TODO
@@ -44,41 +34,25 @@ class Room():
         self.ref = 0
         self.usrs = []
 
-    # def createRoom(self):
-    #     global ROOMS
-
-    #     room_name = 'name'
-
-    #     logging.error("ROOM: Creating new room")
-    #     idx = len(ROOMS)
-    #     ROOMS.append([idx, room_name]) # fix this
-    #     ROOMS_AND_USERS.append([idx, []])
-    #     return [idx, room_name]
-
     def updateRef(self):
         global ROOMS
-
-        # logging.error("ROOM: Creating new room")
         idx = len(ROOMS)
         self.ref = idx
         ROOMS.append(self)
-        #ROOMS.append([idx, room_name]) # fix this
-        #ROOMS_AND_USERS.append([idx, []])
-        #return [idx, room_name]
 
     def deleteRoom():
         # TODO: remove room
         return
 
     def populateRoom(self, usr):
-        # if user_pair[0] in ROOMS_AND_USERS[room_pair[0]][1]:
-        #     logging.error("User already in room")
-        #     return
-        # else:
-        #     logging.error("Adding user to room")
-        #     ROOMS_AND_USERS[room_pair[0]][1].append(user_pair[0])
         self.usrs.append(usr)
         return
+
+    def removeUser(self, usr):
+        for client in self.usrs:
+            if client == usr.name:
+                del self.usr(client)
+                break
 
     def existsRoom():
         tmp = len(ROOMS)
@@ -93,7 +67,10 @@ class Room():
         # TODO: return a list of users in room
         return
 
-    def sendMessageToRoom():
+    def sendMessageToRoom(self, msg):
+        for client in self.usrs:
+            client.conn.send(msg)
+            #self.conn.send(response)
         return
 
 
@@ -127,10 +104,8 @@ class ClientThread(threading.Thread):
                 logging.error("CLIENT: going to join chatroom")
                 room = self.joinMessage(data, client_created)
                 client_created = True
-            elif 'CHAT' in data:
-                return
-            elif 'DISCONNECT' in data:
-                return
+            elif 'LEAVE' in data:
+                self.leaveMessage(data)
             else:
                 return
         return
@@ -164,15 +139,32 @@ class ClientThread(threading.Thread):
             logging.error("ROOM: doesn't exist, creating new room")
             room = Room(msg[0])
             room.updateRef()
-            #room = Room.createRoom(msg[0])
 
         self.rooms.append(room)
         # Add user to room
         room.populateRoom(self.usr)
-        pdb.set_trace()
         response = "JOINED_CHATROOM:%s\nSERVER_IP:%s\nPORT:%d\nROOM_REF:%d\nJOIN_ID:%d\n" % (room.name, self.ip, self.port, room.ref, self.usr.join_id)
         self.conn.send(response)
+        msg_group = "CHAT:%d\nCLIENT_NAME:%s\nMESSAGE:%s has joined this chatroom.\n" % (room.ref, self.usr.name, self.usr.name)
+        room.sendMessageToRoom(msg_group)
         return room
+
+    def leaveMessage(self, data):
+        global ROOMS
+        try:
+            data = data.splitlines()
+            room = data[0].replace('LEAVE_CHATROOM: ','')
+            join_id = data[1].replace('JOIN_ID: ', '')
+            client_name = data[3].replace('CLIENT_NAME: ', '')
+            for roomIdx in ROOMS:
+                if roomIdx.name == room:
+                    room = roomIdx
+                    break
+            room.removeUser(room)
+        except:
+            logging.error("Something wrong with message")
+            return
+        return
 
     def doesRoomExist(self, name):
         global ROOMS
@@ -190,8 +182,8 @@ class ClientThread(threading.Thread):
 my_port = int(sys.argv[1])
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
-server.bind(('localhost', my_port))
-# server.bind(('10.62.0.166', my_port))
+# server.bind(('localhost', my_port))
+server.bind(('10.62.0.166', my_port))
 
 logging.error("%s - SERVER: Listening..." % datetime.datetime.now())
 threads = []
