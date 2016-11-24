@@ -17,17 +17,21 @@ class User():
     def __init__(self, name, conn):
         self.name = name
         self.conn = conn
+        self.join_id = 0#len(USERS)
 
-    def getUserPair(self, name=None, ref=None):
-        return
-
-    def createUser(self, client_name):
+    def updateUser(self, name):
         global USERS
+        self.name = name
+        self.join_id = len(USERS)
 
-        logging.error("USER: Creating new user")
-        idx = len(USERS)
-        USERS.append([idx, client_name, self.conn]) # fix this
-        return [idx, client_name]
+    # def createUser(self, client_name):
+    #     global USERS
+
+    #     logging.error("USER: Creating new user")
+    #     USERS.append(self)
+    #     #idx = len(USERS)
+    #     #USERS.append([idx, client_name, self.conn]) # fix this
+    #     return [idx, client_name]
 
     def deleteUser():
         # TODO
@@ -35,28 +39,45 @@ class User():
 
 
 class Room():
-    def __init__(self, ref, name):
-        self.ref = ref
+    def __init__(self, name):
         self.name = name
+        self.ref = 0
+        self.usrs = []
 
-    def createRoom():
-        logging.error("ROOM: Creating new room")
+    # def createRoom(self):
+    #     global ROOMS
+
+    #     room_name = 'name'
+
+    #     logging.error("ROOM: Creating new room")
+    #     idx = len(ROOMS)
+    #     ROOMS.append([idx, room_name]) # fix this
+    #     ROOMS_AND_USERS.append([idx, []])
+    #     return [idx, room_name]
+
+    def updateRef(self):
+        global ROOMS
+
+        # logging.error("ROOM: Creating new room")
         idx = len(ROOMS)
-        ROOMS.append([idx, room_name]) # fix this
-        ROOMS_AND_USERS.append([idx, []])
-        return [idx, room_name]
+        self.ref = idx
+        ROOMS.append(self)
+        #ROOMS.append([idx, room_name]) # fix this
+        #ROOMS_AND_USERS.append([idx, []])
+        #return [idx, room_name]
 
     def deleteRoom():
         # TODO: remove room
         return
 
-    def populateRoom():
-        if user_pair[0] in ROOMS_AND_USERS[room_pair[0]][1]:
-            logging.error("User already in room")
-            return
-        else:
-            logging.error("Adding user to room")
-            ROOMS_AND_USERS[room_pair[0]][1].append(user_pair[0])
+    def populateRoom(self, usr):
+        # if user_pair[0] in ROOMS_AND_USERS[room_pair[0]][1]:
+        #     logging.error("User already in room")
+        #     return
+        # else:
+        #     logging.error("Adding user to room")
+        #     ROOMS_AND_USERS[room_pair[0]][1].append(user_pair[0])
+        self.usrs.append(usr)
         return
 
     def existsRoom():
@@ -67,33 +88,35 @@ class Room():
                     return True
         else:
             return False
-        return
 
     def getRoomMembers():
         # TODO: return a list of users in room
         return
 
     def sendMessageToRoom():
-        return.
+        return
 
 
 class ClientThread(threading.Thread):
 
     def __init__(self, clientsocket, address):
+        global USERS
+
         logging.error("%s - THREAD: Creating client thread..." % datetime.datetime.now())
         threading.Thread.__init__(self)
         self.conn = clientsocket
         self.address = address
         self.ip = address[0]
         self.port = address[1]
-        self.userName = ''
-        self.userRef = 0
+        self.usr = User('tempName',self.conn)
+        self.rooms = []
+        USERS.append(self.usr)
         logging.error("%s - THREAD: Client thread created" % datetime.datetime.now())
 
     def run(self):
-        usr = User.createUser('tempName') # create user but will need to allow the change of name
-        rooms = []
         global ALIVE
+        client_created = False
+
         while True:
             data = self.conn.recv(2048)
             if data == 'HELO BASE_TEST\n':
@@ -102,23 +125,11 @@ class ClientThread(threading.Thread):
                 self.conn.send(response)
             elif 'JOIN_CHATROOM' in data:
                 logging.error("CLIENT: going to join chatroom")
-                msg = self.breakdownMessage(data)
-                usr.createUser(msg[3])
-                # update User name to be msg[3]
-
-                # check if msg[0] (room) exists
-                #   else create the room
-                # then add user to room
-                # send user the response below
-                response = "JOINED_CHATROOM:%s\nSERVER_IP:%s\nPORT:%d\nROOM_REF:%d\nJOIN_ID:%s\n" % room, self.ip, self.ip, room_pair[0], user_pair[1]
-                self.conn.send(response)
+                room = self.joinMessage(data, client_created)
+                client_created = True
             elif 'CHAT' in data:
-                # TODO: ogging.error('CLIENT: kill message')
-                ALIVE = False
-                self.conn.close()
                 return
             elif 'DISCONNECT' in data:
-                # TODO
                 return
             else:
                 return
@@ -136,6 +147,44 @@ class ClientThread(threading.Thread):
         except:
             logging.error("Something wrong with message")
             return
+
+    def joinMessage(self, data, client_created):
+        msg = self.breakdownMessage(data)
+        # Client exists?
+        if client_created == False:
+            logging.error("USER: doesn't exists, create new user")
+            self.usr.updateUser(msg[3]) # create user but will need to allow the change of name
+
+        # Room exists?
+        if self.doesRoomExist(msg[0]) == True:
+            for roomIdx in ROOMS:
+                if roomIdx.name == msg[0]:
+                    room = roomIdx
+        else:
+            logging.error("ROOM: doesn't exist, creating new room")
+            room = Room(msg[0])
+            room.updateRef()
+            #room = Room.createRoom(msg[0])
+
+        self.rooms.append(room)
+        # Add user to room
+        room.populateRoom(self.usr)
+        pdb.set_trace()
+        response = "JOINED_CHATROOM:%s\nSERVER_IP:%s\nPORT:%d\nROOM_REF:%d\nJOIN_ID:%d\n" % (room.name, self.ip, self.port, room.ref, self.usr.join_id)
+        self.conn.send(response)
+        return room
+
+    def doesRoomExist(self, name):
+        global ROOMS
+
+        tmp = len(ROOMS)
+        if tmp > 0:
+            for i in range(len(ROOMS)):
+                if ROOMS[[i][1]] == room:
+                    return True
+        else:
+            return False
+        return
 
 #logging.basicConfig(filename='log.log', filemode='w', level=logging.DEBUG)
 my_port = int(sys.argv[1])
