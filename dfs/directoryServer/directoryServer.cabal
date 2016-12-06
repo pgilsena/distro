@@ -20,6 +20,9 @@ library
                      , servant-server
                      , wai
                      , warp
+                     , transformers
+                     , mtl
+                     , mongoDB
   default-language:    Haskell2010
 
 executable directoryServer-exe

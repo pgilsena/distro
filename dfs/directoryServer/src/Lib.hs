@@ -1,6 +1,10 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE TypeOperators   #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ExtendedDefaultRules #-}
+
 module Lib
     ( startApp
     ) where
@@ -10,30 +14,40 @@ import Data.Aeson.TH
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
-
-data User = User
-  { userId        :: Int
-  , userFirstName :: String
-  , userLastName  :: String
-  } deriving (Eq, Show)
-
-$(deriveJSON defaultOptions ''User)
-
-type API = "users" :> Get '[JSON] [User]
+import Control.Monad
+import Control.Monad.Trans.Except
+import Data.Char
+import GHC.Generics
+import System.IO
+import Database.MongoDB    (Action, Document, Document, Value, access,
+                            close, connect, delete, exclude, find,
+                            host, insertMany, master, project, rest,
+                            select, sort, (=:))
+import Control.Monad.Trans (liftIO)
 
 startApp :: IO ()
-startApp = run 8080 app
+startApp = do
+    pipe <- connect (host "127.0.0.1")
+    e <- access pipe master "directory" runIt
+    close pipe
+    print e
 
-app :: Application
-app = serve api server
+runIt :: Action IO ()
+runIt = do
+    -- deleteFiles
+    insertFile
+    allFiles >>= printDocs "All files and their respective server location"
 
-api :: Proxy API
-api = Proxy
+-- deleteFiles :: Action IO ()
+-- deleteFiles = delete (select [] "file")
 
-server :: Server API
-server = return users
+insertFile :: Action IO [Database.MongoDB.Value]
+insertFile = insertMany "file" [
+    ["filename" =: "one.txt", "server" =: "127.0.0.2"], -- have location not name for server?
+    ["filename" =: "two.txt", "server" =: "127.0.0.3"] ] -- include a locking variable?
 
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
+allFiles :: Action IO [Document]
+allFiles = rest =<< find (select [] "file") {sort = ["filename" =: 1]}
+
+printDocs :: String -> [Document] -> Action IO ()
+printDocs title docs = liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
