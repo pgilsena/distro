@@ -1,6 +1,10 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE TypeOperators   #-}
+{-# LANGUAGE OverloadedStrings #-}
+{-# LANGUAGE ExtendedDefaultRules #-}
+
 module Lib
     ( startApp
     ) where
@@ -10,7 +14,22 @@ import Data.Aeson.TH
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
+import Control.Monad
+import Control.Monad.Trans.Except
+import Data.Char
+import GHC.Generics
 import System.IO
+import Database.MongoDB    (Action, Document, Document, Value, access,
+                            close, connect, delete, exclude, find,
+                            host, insertMany, master, project, rest,
+                            select, sort, (=:))
+import Control.Monad.Trans (liftIO)
+
+startApp :: IO ()
+startApp = do
+    pipe <- connect (host "127.0.0.1")
+    e <- access pipe master "directory" runIt
+    close pipe
 
 data User = User
   { userId :: Int
@@ -32,21 +51,16 @@ $(deriveJSON defaultOptions ''Token)
 -- serverID: id of server ticket is for
 -- timeout: timeout period for the ticket
 
-type API = "users" :> Get '[JSON] [User]
 
-startApp :: IO ()
-startApp = run 8080 app
+--
+-- authentication work
+--
+type Username = Text
+type Password = Text
 
-app :: Application
-app = serve api server
+auth :: MonadIO m => Username -> Password -> Action m Bool
 
-api :: Proxy API
-api = Proxy
-
-server :: Server API
-server = return users
-
-users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
-        ]
+--
+-- user functions
+--
+insert :: MonadIO m => Collection -> Document -> Action m Value
