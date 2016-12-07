@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/securityServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/bin"
-libdir     = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/securityServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/lib/x86_64-linux-ghc-8.0.1/securityServer-0.1.0.0-Cr1cmt7msnrB2Ahsrwtej4"
+libdir     = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/securityServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/lib/x86_64-linux-ghc-8.0.1/securityServer-0.1.0.0-4imf3VzpPgz54RyWy2drrk"
 datadir    = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/securityServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/share/x86_64-linux-ghc-8.0.1/securityServer-0.1.0.0"
 libexecdir = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/securityServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/libexec"
 sysconfdir = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/securityServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/etc"

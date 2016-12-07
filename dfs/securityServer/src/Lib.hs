@@ -6,8 +6,8 @@
 {-# LANGUAGE ExtendedDefaultRules #-}
 
 module Lib
-    ( startApp
-    ) where
+  ( startApp
+  ) where
 
 import Data.Aeson
 import Data.Aeson.TH
@@ -19,48 +19,37 @@ import Control.Monad.Trans.Except
 import Data.Char
 import GHC.Generics
 import System.IO
+import System.Environment (getArgs)
 import Database.MongoDB    (Action, Document, Document, Value, access,
-                            close, connect, delete, exclude, find,
-                            host, insertMany, master, project, rest,
-                            select, sort, (=:))
+                          close, connect, delete, exclude, find,
+                          host, insert, insertMany, master, project, rest,
+                          select, sort, (=:))
 import Control.Monad.Trans (liftIO)
+
+data User = User {
+username :: String,
+password :: String
+} deriving (Show)
 
 startApp :: IO ()
 startApp = do
-    pipe <- connect (host "127.0.0.1")
-    e <- access pipe master "directory" runIt
-    close pipe
+  pipe <- connect (host "127.0.0.1")
+  e <- access pipe master "users" runIt
+  close pipe
+  print e
 
-data User = User
-  { userId :: Int
-  , username :: String
-  } deriving (Eq, Show)
+runIt :: Action IO ()
+runIt = do
+  insertUser
+  allUsers >>= printDocs "All files and their respective server location"
 
-$(deriveJSON defaultOptions ''User)
+insertUser :: Action IO [Database.MongoDB.Value]
+insertUser = insertMany "user" [
+  ["username" =: "isaac", "password" =: "pwd_isaac"],
+  ["password" =: "albert", "password" =: "pwd_albert"] ]
 
-data Token = Token
-	{ ticket :: String
-	,	sessionKey :: String
-	,	serverID :: Int
-	, timeout :: Int
-	} deriving (Show)
+allUsers :: Action IO [Document]
+allUsers = rest =<< find (select [] "user") {sort = ["username" =: 1]}
 
-$(deriveJSON defaultOptions ''Token)
--- ticket: contains copy of session key (encrypted with server encryption key)
--- sessionKey: random key (encrypts communication between client and server)
--- serverID: id of server ticket is for
--- timeout: timeout period for the ticket
-
-
---
--- authentication work
---
-type Username = Text
-type Password = Text
-
-auth :: MonadIO m => Username -> Password -> Action m Bool
-
---
--- user functions
---
-insert :: MonadIO m => Collection -> Document -> Action m Value
+printDocs :: String -> [Document] -> Action IO ()
+printDocs title docs = liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs

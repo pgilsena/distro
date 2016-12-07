@@ -21,19 +21,12 @@
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 0)
 
-/* package base-compat-0.9.1 */
-#define VERSION_base_compat "0.9.1"
-#define MIN_VERSION_base_compat(major1,major2,minor) (\
-  (major1) <  0 || \
-  (major1) == 0 && (major2) <  9 || \
-  (major1) == 0 && (major2) == 9 && (minor) <= 1)
-
-/* package blaze-html-0.8.1.3 */
-#define VERSION_blaze_html "0.8.1.3"
-#define MIN_VERSION_blaze_html(major1,major2,minor) (\
-  (major1) <  0 || \
-  (major1) == 0 && (major2) <  8 || \
-  (major1) == 0 && (major2) == 8 && (minor) <= 1)
+/* package mongoDB-2.1.1.1 */
+#define VERSION_mongoDB "2.1.1.1"
+#define MIN_VERSION_mongoDB(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  1 || \
+  (major1) == 2 && (major2) == 1 && (minor) <= 1)
 
 /* package mtl-2.2.1 */
 #define VERSION_mtl "2.2.1"
@@ -49,19 +42,12 @@
   (major1) == 0 && (major2) <  8 || \
   (major1) == 0 && (major2) == 8 && (minor) <= 1)
 
-/* package text-1.2.2.1 */
-#define VERSION_text "1.2.2.1"
-#define MIN_VERSION_text(major1,major2,minor) (\
-  (major1) <  1 || \
-  (major1) == 1 && (major2) <  2 || \
-  (major1) == 1 && (major2) == 2 && (minor) <= 2)
-
-/* package time-1.6.0.1 */
-#define VERSION_time "1.6.0.1"
-#define MIN_VERSION_time(major1,major2,minor) (\
-  (major1) <  1 || \
-  (major1) == 1 && (major2) <  6 || \
-  (major1) == 1 && (major2) == 6 && (minor) <= 0)
+/* package transformers-0.5.2.0 */
+#define VERSION_transformers "0.5.2.0"
+#define MIN_VERSION_transformers(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  5 || \
+  (major1) == 0 && (major2) == 5 && (minor) <= 2)
 
 /* package wai-3.2.1.1 */
 #define VERSION_wai "3.2.1.1"
@@ -133,7 +119,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "securityServer-0.1.0.0-Cr1cmt7msnrB2Ahsrwtej4"
+#define CURRENT_COMPONENT_ID "securityServer-0.1.0.0-4imf3VzpPgz54RyWy2drrk"
 
-#define CURRENT_PACKAGE_KEY "securityServer-0.1.0.0-Cr1cmt7msnrB2Ahsrwtej4"
+#define CURRENT_PACKAGE_KEY "securityServer-0.1.0.0-4imf3VzpPgz54RyWy2drrk"
 
