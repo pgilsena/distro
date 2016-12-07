@@ -21,12 +21,33 @@
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 0)
 
+/* package mongoDB-2.1.1.1 */
+#define VERSION_mongoDB "2.1.1.1"
+#define MIN_VERSION_mongoDB(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  1 || \
+  (major1) == 2 && (major2) == 1 && (minor) <= 1)
+
+/* package mtl-2.2.1 */
+#define VERSION_mtl "2.2.1"
+#define MIN_VERSION_mtl(major1,major2,minor) (\
+  (major1) <  2 || \
+  (major1) == 2 && (major2) <  2 || \
+  (major1) == 2 && (major2) == 2 && (minor) <= 1)
+
 /* package servant-server-0.8.1 */
 #define VERSION_servant_server "0.8.1"
 #define MIN_VERSION_servant_server(major1,major2,minor) (\
   (major1) <  0 || \
   (major1) == 0 && (major2) <  8 || \
   (major1) == 0 && (major2) == 8 && (minor) <= 1)
+
+/* package transformers-0.5.2.0 */
+#define VERSION_transformers "0.5.2.0"
+#define MIN_VERSION_transformers(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  5 || \
+  (major1) == 0 && (major2) == 5 && (minor) <= 2)
 
 /* package wai-3.2.1.1 */
 #define VERSION_wai "3.2.1.1"
@@ -98,7 +119,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "directoryServer-0.1.0.0-7TxI0usxQjv4M1dCUeiV5n"
+#define CURRENT_COMPONENT_ID "directoryServer-0.1.0.0-5kx7Ls4DPq7LfLg5p4uKum"
 
-#define CURRENT_PACKAGE_KEY "directoryServer-0.1.0.0-7TxI0usxQjv4M1dCUeiV5n"
+#define CURRENT_PACKAGE_KEY "directoryServer-0.1.0.0-5kx7Ls4DPq7LfLg5p4uKum"
 
