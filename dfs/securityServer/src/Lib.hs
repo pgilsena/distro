@@ -25,11 +25,12 @@ import Database.MongoDB    (Action, Document, Document, Value, access,
                           host, insert, insertMany, master, project, rest,
                           select, sort, (=:))
 import Control.Monad.Trans (liftIO)
+import Data.Text (pack, Text)
 
-data User = User {
-username :: String,
-password :: String
-} deriving (Show)
+data User = User
+  { username :: String
+  , password :: String
+  } deriving (Eq, Show)
 
 startApp :: IO ()
 startApp = do
@@ -40,11 +41,24 @@ startApp = do
 
 runIt :: Action IO ()
 runIt = do
-  insertUser
+  insertUser2
   allUsers >>= printDocs "All files and their respective server location"
 
-insertUser :: Action IO [Database.MongoDB.Value]
-insertUser = insertMany "user" [
+{-insertUser :: Action IO [Database.MongoDB.Value]
+insertUser = do
+  let tmp = (User "fiddle" "sticks")
+  usrIdx <- insert tmp-}
+  
+{-insertUser3 :: Action IO [Database.MongoDB.Value]
+insertUser3 (User {username =: "fiddle", password =: "sticks"}) = do
+  usrIdx <- (insert "boo"
+    ["username" =: (pack "fiddle", "password" =: (pack "sticks")])
+  let sUsrIdx = show usrIdx
+  liftIO $ printf "Added _id : %s\n" sUsrIdx-}
+
+
+insertUser2 :: Action IO [Database.MongoDB.Value]
+insertUser2 = insertMany "user" [
   ["username" =: "isaac", "password" =: "pwd_isaac"],
   ["password" =: "albert", "password" =: "pwd_albert"] ]
 

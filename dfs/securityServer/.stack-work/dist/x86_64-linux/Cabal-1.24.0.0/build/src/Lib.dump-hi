@@ -1,12 +1,12 @@
 
 ==================== FINAL INTERFACE ====================
-2016-12-07 22:36:04.201876 UTC
+2016-12-08 15:35:34.077421 UTC
 
-interface securityServer-0.1.0.0-4imf3VzpPgz54RyWy2drrk:Lib 8001
-  interface hash: 3a08942db829ac0d19e29b5bfcc620d1
-  ABI hash: 4e31fa1e97bf95d282993ecf2c87fdb2
-  export-list hash: d171451916b34ae6b599d215b2fdb74b
-  orphan hash: c391d7d767bfa5b6997d429e3f83fb01
+interface securityServer-0.1.0.0-9XLddLaAHKhFXLsvzYRjA3:Lib 8001
+  interface hash: d8dd1c384ed72f3cd3310a99ed03336b
+  ABI hash: 3d59381a8db8aab37e23c6a61ce36992
+  export-list hash: eb409e3afdca7b6e12d5af0f2f1d5ace
+  orphan hash: 8b5eba22f17279474ccd25df2114d63e
   flag hash: 6d08b9db3d1e89bf10ee0a560d90b6f4
   sig of: Nothing
   used TH splices: False
@@ -182,10 +182,36 @@ import  -/  mongoDB-2.1.1.1@mongoDB-2.1.1.1-5wYXyk7zdwHHB6m4bwUEQN:Database.Mong
 import  -/  mongoDB-2.1.1.1@mongoDB-2.1.1.1-5wYXyk7zdwHHB6m4bwUEQN:Database.MongoDB.Query 11154b7ccce00f58189d815abaac6794
 import  -/  mtl-2.2.1@mtl-2.2.1-6qsR1PHUy5lL47Hpoa4jCM:Control.Monad.Trans 0a058c68d8234a5f23a0f2e61a261faf
 import  -/  servant-server-0.8.1@servant-server-0.8.1-K0euN04vPTa45wy4acLZH0:Servant 90a21443b9bcd78bfc4a5ddf791c82dd
+import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text 6515f3179e27a91345842b6e634f584c
 import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Except 71b1d86204f6908788cb5223e3c73193
 import  -/  wai-3.2.1.1@wai-3.2.1.1-f77bMYZGLQBAD3XJrvGiW:Network.Wai f10fb472d685284a8637bf34e58bc7f2
 import  -/  warp-3.2.9@warp-3.2.9-GXzPTh1481F3R0zZxzj1WW:Network.Wai.Handler.Warp 889486c28299135fca865dcd9b9b73e7
-db9a2bf61da08e5f518e621ca9f64ada
+bf9492ecd4403b3c5348efb638ad9124
+  $fEqUser :: GHC.Classes.Eq Lib.User
+  DFunId
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:. @ Lib.User Lib.$fEqUser_$c== Lib.$fEqUser_$c/= -}
+bf9492ecd4403b3c5348efb638ad9124
+  $fEqUser_$c/= :: Lib.User -> Lib.User -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SL),1*U(1*U,1*U)><S(SL),1*U(1*U,1*U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Lib.User) (w1 :: Lib.User) ->
+                 case w of ww { Lib.User ww1 ww2 ->
+                 case w1 of ww3 { Lib.User ww4 ww5 ->
+                 Lib.$w$c/= ww1 ww2 ww4 ww5 } }) -}
+bf9492ecd4403b3c5348efb638ad9124
+  $fEqUser_$c== :: Lib.User -> Lib.User -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SL),1*U(1*U,1*U)><S(SL),1*U(1*U,1*U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Lib.User) (w1 :: Lib.User) ->
+                 case w of ww { Lib.User ww1 ww2 ->
+                 case w1 of ww3 { Lib.User ww4 ww5 ->
+                 Lib.$w$c== ww1 ww2 ww4 ww5 } }) -}
+bf9492ecd4403b3c5348efb638ad9124
   $fShowUser :: GHC.Show.Show Lib.User
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -194,28 +220,28 @@ db9a2bf61da08e5f518e621ca9f64ada
                   Lib.$fShowUser_$cshowsPrec
                   Lib.$fShowUser_$cshow
                   Lib.$fShowUser_$cshowList -}
-db9a2bf61da08e5f518e621ca9f64ada
+bf9492ecd4403b3c5348efb638ad9124
   $fShowUser1 :: Lib.User -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Lib.User) (w1 :: GHC.Base.String) ->
                  case w of ww { Lib.User ww1 ww2 ->
                  Lib.$w$cshowsPrec 0# ww1 ww2 w1 }) -}
-efde2add8c0e67a836490e4ec9f3eee5
+1ca8292cce72f7c9b5a2e4a51ccaa216
   $fShowUser2 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "}"#) -}
-46d94bff7ef106fb3d70d341157dad6e
+c2580aff6e3f930141b02e286068daab
   $fShowUser3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "password = "#) -}
-c9c1cc4ac7f5b077df33bb878372ab95
+dbab7cbbd48143a655651c7305d6b261
   $fShowUser4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
-3ce554d0c37d3f6dd70408266845472c
+9aed97a5c686de25604fd748d9134aea
   $fShowUser5 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "username = "#) -}
-cd244e1f85731654312a38647c68ce7e
+808c652d7b60f4bfe17d59e08d80d79d
   $fShowUser6 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "User {"#) -}
-db9a2bf61da08e5f518e621ca9f64ada
+bf9492ecd4403b3c5348efb638ad9124
   $fShowUser_$cshow :: Lib.User -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(1*U,1*U)>,
      Unfolding: InlineRule (1, True, False)
@@ -224,11 +250,11 @@ db9a2bf61da08e5f518e621ca9f64ada
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-db9a2bf61da08e5f518e621ca9f64ada
+bf9492ecd4403b3c5348efb638ad9124
   $fShowUser_$cshowList :: [Lib.User] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__ @ Lib.User Lib.$fShowUser1) -}
-db9a2bf61da08e5f518e621ca9f64ada
+bf9492ecd4403b3c5348efb638ad9124
   $fShowUser_$cshowsPrec ::
     GHC.Types.Int -> Lib.User -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <S(S),1*U(U)><S,1*U(1*U,1*U)><L,U>,
@@ -238,7 +264,7 @@ db9a2bf61da08e5f518e621ca9f64ada
                  case w of ww { GHC.Types.I# ww1 ->
                  case w1 of ww2 { Lib.User ww3 ww4 ->
                  Lib.$w$cshowsPrec ww1 ww3 ww4 w2 } }) -}
-379e9197e91967892d78a758f8a15abc
+11be6fc05172186f44e8e4bf2d9229d0
   $s$fApplicativeReaderT ::
     GHC.Base.Applicative
       (Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO)
@@ -267,12 +293,12 @@ db9a2bf61da08e5f518e621ca9f64ada
                      @ GHC.Types.IO
                      @ r
                      Lib.$s$fApplicativeReaderT_$dApplicative) -}
-9e43f0909fdbb728fcb599772a42cbb5
+2f594745a189406e75253976f04867a5
   $s$fApplicativeReaderT_$dApplicative ::
     GHC.Base.Applicative GHC.Types.IO
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True) GHC.Base.$fApplicativeIO -}
-6647be1d2b4c560a7493702b7d314e6a
+f23c310348d509186d4fbca4ac2d4f7d
   $s$fApplicativeReaderT_$s$fApplicativeReaderT_$c<*> ::
     Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO (a -> b)
     -> Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO a
@@ -313,14 +339,14 @@ db9a2bf61da08e5f518e621ca9f64ada
                          @ a
                          v
                          r1))) -}
-0acdd09cbc2c82704a94409c74ac4e4e
+2483033f248efccd1a7527ab8828c8d5
   $s$fApplicativeReaderT_$s$fApplicativeReaderT_$cp1Applicative ::
     GHC.Base.Functor
       (Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO)
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True)
                 Lib.$s$fApplicativeReaderT_$s$fFunctorReaderT -}
-dfae023148df23aa614f623b538e320e
+798906ef623f34af6b1f11938a91e27d
   $s$fApplicativeReaderT_$s$fFunctorReaderT ::
     GHC.Base.Functor
       (Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO)
@@ -329,7 +355,7 @@ dfae023148df23aa614f623b538e320e
                   @ (Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO)
                   (Lib.$s$fApplicativeReaderT_$s$fFunctorReaderT_$cfmap @ r)
                   (Lib.$s$fApplicativeReaderT_$s$fFunctorReaderT_$c<$ @ r) -}
-c1d0a8a4e9d523d33ca3f56a55824f80
+20cb5273a5afa04c54329c778cbe8c34
   $s$fApplicativeReaderT_$s$fFunctorReaderT_$c<$ ::
     a
     -> Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO b
@@ -382,7 +408,7 @@ c1d0a8a4e9d523d33ca3f56a55824f80
                  ->_R <Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO b>_R
                  ->_R Sym (Control.Monad.Trans.Reader.N:ReaderT[0]
                                <*>_N <r>_R <GHC.Types.IO>_R <a>_N)) -}
-473be41ed2e59f3dd9c0814a919709f5
+5321f420ffe05f7c9092d1ed66deac22
   $s$fApplicativeReaderT_$s$fFunctorReaderT_$cfmap ::
     (a -> b)
     -> Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO a
@@ -433,7 +459,7 @@ c1d0a8a4e9d523d33ca3f56a55824f80
                  ->_R <Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO a>_R
                  ->_R Sym (Control.Monad.Trans.Reader.N:ReaderT[0]
                                <*>_N <r>_R <GHC.Types.IO>_R <b>_N)) -}
-c5c38c74276465f29aebab17ea3153b8
+a8e3e99bff6fbe22d715d14a27718732
   $s$fMonadReaderT ::
     GHC.Base.Monad (Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO)
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -444,7 +470,7 @@ c5c38c74276465f29aebab17ea3153b8
                   (Lib.$s$fMonadReaderT_$s$fMonadReaderT_$c>> @ r)
                   (Lib.$s$fMonadReaderT_$s$fMonadReaderT_$creturn @ r)
                   (Lib.$s$fMonadReaderT_$s$fMonadReaderT_$cfail @ r) -}
-d3dca58dd5a4ab9f45149ad4490d9672
+58b70f6a1ecf6c4d5d14d5dd85c0b37f
   $s$fMonadReaderT_$s$fMonadReaderT_$c>> ::
     Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO a
     -> Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO b
@@ -486,7 +512,7 @@ d3dca58dd5a4ab9f45149ad4490d9672
                          @ b
                          k
                          r1))) -}
-c79dad819117416d1d88de743d8389ec
+9a982323c646cfb99051502c735b9479
   $s$fMonadReaderT_$s$fMonadReaderT_$c>>= ::
     Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO a
     -> (a -> Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO b)
@@ -528,7 +554,7 @@ c79dad819117416d1d88de743d8389ec
                          @ b
                          (k a1)
                          r1))) -}
-bbee60ad4d92041725bb348cc2a754c7
+9db012e2977d0f731150b28458f57638
   $s$fMonadReaderT_$s$fMonadReaderT_$cfail ::
     GHC.Base.String
     -> Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO a
@@ -543,13 +569,13 @@ bbee60ad4d92041725bb348cc2a754c7
                    `cast`
                  (Sym (Control.Monad.Trans.Reader.N:ReaderT[0]
                            <*>_N <r>_R <GHC.Types.IO>_R <a>_N))) -}
-8490ce88de4c14db3ab8b93b26aced4a
+54a9ea49100fe8b4a03e05f43ea8e2d6
   $s$fMonadReaderT_$s$fMonadReaderT_$cp1Monad ::
     GHC.Base.Applicative
       (Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO)
   {- Strictness: m,
      Unfolding: InlineRule (0, True, True) Lib.$s$fApplicativeReaderT -}
-060e5594f26fd1bda7dc7a5bba8afc3f
+fa167751861c1508f1df77de66159736
   $s$fMonadReaderT_$s$fMonadReaderT_$creturn ::
     a -> Control.Monad.Trans.Reader.ReaderT r GHC.Types.IO a
   {- Arity: 3, HasNoCafRefs, Strictness: <L,U><L,A><S,U>,
@@ -567,44 +593,79 @@ bbee60ad4d92041725bb348cc2a754c7
                           (<r>_R ->_R Sym (GHC.Types.N:IO[0] <a>_R))
                           (Sym (Control.Monad.Trans.Reader.N:ReaderT[0]
                                     <*>_N <r>_R <GHC.Types.IO>_R <a>_N))) -}
-f39e312aa1a5898a5358f16eea6f1f4a
+420f41215f8fd206bd8eb51710851b00
   $tc'User :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   4597919242002452621##
-                   11535424973142072240##
+                   7793156046264863712##
+                   3505304821148717683##
                    Lib.$trModule
                    Lib.$tc'User1) -}
-e2107ffc8895086e8ed1ee3861e095a3
+96d3675d084c07d8c0c244747a91deb0
   $tc'User1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'User"#) -}
-0bc2d2f02c019337a62cd764f097ddda
+5f263159fbef02a9ff279275efea400d
   $tcUser :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.TyCon
-                   1516096386696704563##
-                   16288598849906549479##
+                   9490572056321360559##
+                   13380785229545426601##
                    Lib.$trModule
                    Lib.$tcUser1) -}
-1e40d0d0925b72c6beb9e93c9f52aee2
+34423026765299a639d48020f6790c4f
   $tcUser1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "User"#) -}
-8a08f5a0f2c402d8565dfa1c2c8f478c
+c843de332a8519321dc421c23aa21af6
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
      Unfolding: (GHC.Types.Module Lib.$trModule2 Lib.$trModule1) -}
-e57155e927a39e24b3966eb5b0a66250
+7f54d7bfe3edc08b4bd94bf95bb9353d
   $trModule1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "Lib"#) -}
-b38215c91bc91f65724098b41189caff
+e69a1af08e87c756ff63ffc0f4c0a6b0
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS
-                   "securityServer-0.1.0.0-4imf3VzpPgz54RyWy2drrk"#) -}
-0ec8798c3168f8f8044b81cdb82b7d61
+                   "securityServer-0.1.0.0-9XLddLaAHKhFXLsvzYRjA3"#) -}
+beeee188eac193effeef44fd94b3f6cf
+  $w$c/= ::
+    GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Types.Bool
+  {- Arity: 4, HasNoCafRefs,
+     Strictness: <S,1*U><L,1*U><S,1*U><L,1*U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Base.String)
+                   (ww1 :: GHC.Base.String)
+                   (ww2 :: GHC.Base.String)
+                   (ww3 :: GHC.Base.String) ->
+                 case GHC.Base.eqString ww ww2 of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True
+                   -> case GHC.Base.eqString ww1 ww3 of wild1 {
+                        GHC.Types.False -> GHC.Types.True
+                        GHC.Types.True -> GHC.Types.False } }) -}
+2e65c919e548ac96b29aa4d851cdbacb
+  $w$c== ::
+    GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Types.Bool
+  {- Arity: 4, HasNoCafRefs,
+     Strictness: <S,1*U><L,1*U><S,1*U><L,1*U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Base.String)
+                   (ww1 :: GHC.Base.String)
+                   (ww2 :: GHC.Base.String)
+                   (ww3 :: GHC.Base.String) ->
+                 case GHC.Base.eqString ww ww2 of wild {
+                   GHC.Types.False -> GHC.Types.False
+                   GHC.Types.True -> GHC.Base.eqString ww1 ww3 }) -}
+ebd02e1e5adbd70b14712bc26d5035e7
   $w$cshowsPrec ::
     GHC.Prim.Int#
     -> GHC.Base.String
@@ -661,22 +722,22 @@ b38215c91bc91f65724098b41189caff
                         @ GHC.Types.Char
                         GHC.Show.shows9
                         (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows6 w)) }) -}
-db9a2bf61da08e5f518e621ca9f64ada
+bf9492ecd4403b3c5348efb638ad9124
   data User
     = User {username :: GHC.Base.String, password :: GHC.Base.String}
-63911a35487486e8b6320f388e18c088
+aceba3db750d9d83e23c34570946884b
   password :: Lib.User -> GHC.Base.String
   RecSel Left Lib.User
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(A,1*U)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Lib.User) ->
                  case ds of wild { Lib.User ds1 ds2 -> ds2 }) -}
-8a83571be685fae29d0d6ec7fd2e0030
+8ca080992ad0fe66ec01abb6170dcba6
   startApp :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-eb5728229cc51127a7785fec1fb918e4
+32ae7a6fc6cb89d632dd0fefef996eba
   startApp1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -693,7 +754,7 @@ eb5728229cc51127a7785fec1fb918e4
                  case ipv1 of ww { GHC.Types.D# ww1 ->
                  case Database.MongoDB.Connection.$wconnect'
                         ww1
-                        Lib.startApp39
+                        Lib.startApp40
                         Database.MongoDB.Connection.defaultPort
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
                  let {
@@ -701,14 +762,9 @@ eb5728229cc51127a7785fec1fb918e4
                    = Database.MongoDB.Query.MongoContext
                        ipv3
                        Database.MongoDB.Query.master
-                       Lib.startApp38
+                       Lib.startApp39
                  } in
-                 case ((Database.MongoDB.Query.insert'
-                          @ GHC.Types.IO
-                          Control.Monad.IO.Class.$fMonadIOIO
-                          (GHC.Types.[] @ Database.MongoDB.Internal.Protocol.InsertOption)
-                          Lib.startApp11
-                          Lib.startApp12)
+                 case ((Lib.startApp38 Lib.startApp11 Lib.startApp12)
                          `cast`
                        (Control.Monad.Trans.Reader.N:ReaderT[0]
                             <*>_N
@@ -779,54 +835,54 @@ eb5728229cc51127a7785fec1fb918e4
                    (GHC.Show.$fShow()_$cshow ipv13)
                    GHC.Types.True
                    ipv16 } } } } } } } } } } } } } } } }) -}
-015f7d07af8242c706aa139b2f06aa99
+0e360c3df082d55fd9a18d4cf3646f4d
   startApp10 :: Database.MongoDB.Query.Selection
   {- Unfolding: (Database.MongoDB.Query.Select
                    (GHC.Types.[] @ Data.Bson.Field)
                    Lib.startApp11) -}
-ca88a91a492424cd6daffcdc9ba608f1
+293b5b18b049d853514531c8adbd4db4
   startApp11 :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString# "user"#) -}
-7cbad39bdacb5f77e6b901f160b882fc
+0c2fc5498f1fca2ed61374a52198cca4
   startApp12 :: [Data.Bson.Document]
   {- Unfolding: (GHC.Types.:
                    @ Data.Bson.Document
                    Lib.startApp26
                    Lib.startApp13) -}
-938c1da0fa830be17625aa9ff316d3e4
+27e371554687fcc67b6309254cbbc1da
   startApp13 :: [Data.Bson.Document]
   {- Unfolding: (GHC.Types.:
                    @ Data.Bson.Document
                    Lib.startApp14
                    (GHC.Types.[] @ Data.Bson.Document)) -}
-f155d6efc33c6b5758c984652e6ec148
+d8e30dcf66864c23c3a10cc577a2a9b5
   startApp14 :: [Data.Bson.Field]
   {- Unfolding: (GHC.Types.:
                    @ Data.Bson.Field
                    Lib.startApp21
                    Lib.startApp15) -}
-e0829b78b30264235514512738e79af7
+628defd17f5e1912b7766fc7904c59b8
   startApp15 :: [Data.Bson.Field]
   {- Unfolding: (GHC.Types.:
                    @ Data.Bson.Field
                    Lib.startApp16
                    (GHC.Types.[] @ Data.Bson.Field)) -}
-8bebc331a5a61af5815129957cb39d60
+846a8405563ac81f8e434f39fa5d3968
   startApp16 :: Data.Bson.Field
   {- Unfolding: (case Data.Text.Show.unpackCString#
                         "password"# of dt { Data.Text.Internal.Text ipv ipv1 ipv2 ->
                  Data.Bson.:= dt Lib.startApp17 }) -}
-23ae70b2e1db709fa5c6dbb355c76494
+77c517ebf0e96ab614bad2810c85faab
   startApp17 :: Data.Bson.Value
   {- Unfolding: (Data.Bson.String Lib.startApp18) -}
-77b7ff54d0934294e9c8b4cf1e2d0981
+6c8b885efd8e18694f0622287fba2243
   startApp18 :: Data.Text.Internal.Text
   {- Unfolding: (case GHC.Magic.runRW#
                         @ 'GHC.Types.PtrRepLifted
                         @ Data.Text.Internal.Text
                         Lib.startApp19 of ds1 { (#,#) ipv ipv1 ->
                  ipv1 }) -}
-ce8f79ac700a244677a50afdb008603e
+a503f2d881ea63f67e2968b5df497d27
   startApp19 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
@@ -844,29 +900,29 @@ ce8f79ac700a244677a50afdb008603e
                    Lib.startApp20
                    0#
                    ipv }) -}
-ea96e88b25b1acbc7034bc9be7fe4238
+80a9a5c0db9f22c6f64662247adce7c5
   startApp2 :: GHC.Exception.SomeException
   {- Unfolding: (GHC.IO.Exception.$fExceptionAsyncException_$ctoException
                    GHC.IO.Exception.ThreadKilled) -}
-ff00ab6af3448fc59986e121edfea62b
+f2fc740646719e24f626a8f1734ef371
   startApp20 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "pwd_albert"#) -}
-6db6bc871e14f7e97c07387889ae3536
+35df2b94162c0b31625faab6d5a63312
   startApp21 :: Data.Bson.Field
   {- Unfolding: (case Data.Text.Show.unpackCString#
                         "password"# of dt { Data.Text.Internal.Text ipv ipv1 ipv2 ->
                  Data.Bson.:= dt Lib.startApp22 }) -}
-fb55679ca3b90e42877dd2ab9ae23ecf
+148a75a0a0d92bd0ae8c48741eac1aeb
   startApp22 :: Data.Bson.Value
   {- Unfolding: (Data.Bson.String Lib.startApp23) -}
-bc8cd511fd108588d22e73884d721f41
+aeea4a0b6e3871091b1982bcdb2cdf3e
   startApp23 :: Data.Text.Internal.Text
   {- Unfolding: (case GHC.Magic.runRW#
                         @ 'GHC.Types.PtrRepLifted
                         @ Data.Text.Internal.Text
                         Lib.startApp24 of ds1 { (#,#) ipv ipv1 ->
                  ipv1 }) -}
-94f9e778d8847b2152ff9fb968da7058
+fa82a326c054ef01e5fbadb9f4e3bfab
   startApp24 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
@@ -884,43 +940,43 @@ bc8cd511fd108588d22e73884d721f41
                    Lib.startApp25
                    0#
                    ipv }) -}
-43dd6ed73f3095b5975e3f80fe93792d
+40ddfd989c52194d94bc43c4d2c3b55c
   startApp25 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "albert"#) -}
-1201104ceb3b09439a4de2b398367cc9
+1ea953fa6bad69e591945e1b1c3d59da
   startApp26 :: [Data.Bson.Field]
   {- Unfolding: (GHC.Types.:
                    @ Data.Bson.Field
                    Lib.startApp33
                    Lib.startApp27) -}
-35e4ecac5b3419500eeb1ff7f6eb1248
+511cfe3352bb4b39e71175addbc45996
   startApp27 :: [Data.Bson.Field]
   {- Unfolding: (GHC.Types.:
                    @ Data.Bson.Field
                    Lib.startApp28
                    (GHC.Types.[] @ Data.Bson.Field)) -}
-90ed451583bd5bc95e4f120cd838949b
+cbbe7c0d682a1b403f475d75552fa0bd
   startApp28 :: Data.Bson.Field
   {- Unfolding: (case Data.Text.Show.unpackCString#
                         "password"# of dt { Data.Text.Internal.Text ipv ipv1 ipv2 ->
                  Data.Bson.:= dt Lib.startApp29 }) -}
-772b8904f386244dcc39fadba64e7e1c
+808e7a38da568bd798ed0c4b49d6b7dd
   startApp29 :: Data.Bson.Value
   {- Unfolding: (Data.Bson.String Lib.startApp30) -}
-c195a84c7b84049cda1bd424dcfc3858
+bc65b10eadb16603f98154041982e911
   startApp3 ::
     [Data.Bson.Document]
     -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
   {- Arity: 2, Strictness: <S,1*U><S,U> -}
-3783302a7d024dd1ab6269d0850a1e45
+5c137c05ec8e26ff1d5282b5dd4784fa
   startApp30 :: Data.Text.Internal.Text
   {- Unfolding: (case GHC.Magic.runRW#
                         @ 'GHC.Types.PtrRepLifted
                         @ Data.Text.Internal.Text
                         Lib.startApp31 of ds1 { (#,#) ipv ipv1 ->
                  ipv1 }) -}
-de4d6ebc5d4500564b98333008574746
+73e15275380dbe7d3d7e600cbf7e9cbe
   startApp31 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
@@ -938,25 +994,25 @@ de4d6ebc5d4500564b98333008574746
                    Lib.startApp32
                    0#
                    ipv }) -}
-7712ebcfd08e502239768f8dabe3028a
+7ef764f30585d5a70eab40aa72a97e82
   startApp32 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "pwd_isaac"#) -}
-8de16df199fa861c812cf9f3bcb22611
+c00fe85075b5594be4ee928769e01268
   startApp33 :: Data.Bson.Field
   {- Unfolding: (case Data.Text.Show.unpackCString#
                         "username"# of dt { Data.Text.Internal.Text ipv ipv1 ipv2 ->
                  Data.Bson.:= dt Lib.startApp34 }) -}
-151672cc19794a7d2cd59cc6a190624a
+aba221504a20724d89112c4450248883
   startApp34 :: Data.Bson.Value
   {- Unfolding: (Data.Bson.String Lib.startApp35) -}
-caec0bb2c262c4456a0afe6b251740f5
+b88e5c3a6198915742a699b3b7e9186d
   startApp35 :: Data.Text.Internal.Text
   {- Unfolding: (case GHC.Magic.runRW#
                         @ 'GHC.Types.PtrRepLifted
                         @ Data.Text.Internal.Text
                         Lib.startApp36 of ds1 { (#,#) ipv ipv1 ->
                  ipv1 }) -}
-2da71b45b846e2527d11ed01de45d992
+d56a7d67f746cb150033944d0c29d51a
   startApp36 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld,
@@ -974,20 +1030,30 @@ caec0bb2c262c4456a0afe6b251740f5
                    Lib.startApp37
                    0#
                    ipv }) -}
-a7951e75adb6714fb5a7e879ccb7e98c
+3dd822a57894b40836e893b8068af5ff
   startApp37 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "isaac"#) -}
-81f5ca7697e396c0e4b022a52f7360ee
-  startApp38 :: Database.MongoDB.Query.Database
+95de3109b04adb7905a944d84a4d5ebb
+  startApp38 ::
+    Database.MongoDB.Query.Collection
+    -> [Data.Bson.Document]
+    -> Database.MongoDB.Query.Action GHC.Types.IO [Data.Bson.Value]
+  {- Unfolding: (Database.MongoDB.Query.insert'
+                   @ GHC.Types.IO
+                   Control.Monad.IO.Class.$fMonadIOIO
+                   (GHC.Types.[]
+                      @ Database.MongoDB.Internal.Protocol.InsertOption)) -}
+972ad250c5db5aebbbc60210aaf9b517
+  startApp39 :: Database.MongoDB.Query.Database
   {- Unfolding: (Data.Text.Show.unpackCString# "users"#) -}
-0e9970c6fbf833462a7b79ef956bcf62
-  startApp39 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "127.0.0.1"#) -}
-7c88a6dbb5ab03ce7ce7eff5bd75b9aa
+5a8facdac2101f5a758b9281bd805333
   startApp4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString#
                    "All files and their respective server location"#) -}
-a61131f2d0f4942ed2dda81faae16477
+b8fa0251bd3658215b05631c5bf7cd99
+  startApp40 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "127.0.0.1"#) -}
+1c894a9968f994f4213bf859ed7a75bf
   startApp5 ::
     Database.MongoDB.Query.Cursor
     -> Database.MongoDB.Query.Action
@@ -996,30 +1062,31 @@ a61131f2d0f4942ed2dda81faae16477
                    @ GHC.Types.IO
                    Control.Monad.IO.Class.$fMonadIOIO
                    Control.Monad.Trans.Control.$fMonadBaseControlIOIO) -}
-27732693230ba0015fc2775edf579907
+107843313c6d43d4884e02b40769dd1d
   startApp6 :: [Data.Bson.Field]
   {- Unfolding: (GHC.Types.:
                    @ Data.Bson.Field
                    Lib.startApp7
                    (GHC.Types.[] @ Data.Bson.Field)) -}
-9ebb28a838f1a70f790e994a35db2ffc
+e8417cc334c4042b1553066fbb509255
   startApp7 :: Data.Bson.Field
   {- Unfolding: (case Data.Text.Show.unpackCString#
                         "username"# of dt { Data.Text.Internal.Text ipv ipv1 ipv2 ->
                  Data.Bson.:= dt Lib.startApp8 }) -}
-f3aacbbaa1138535b776e63f12005b52
+6721a957148a5e4bd59933fa4b02e091
   startApp8 :: Data.Bson.Value
   {- Unfolding: (Data.Bson.$fValInteger_$cval Lib.startApp9) -}
-3d1d28e86e9fb509ce4ee0871b5ccd7d
+f6c1123d1d7ff75017ffc47cec11eca7
   startApp9 :: GHC.Integer.Type.Integer
   {- HasNoCafRefs, Unfolding: (1) -}
-e2174683168474a9286cbbfc9697d7e2
+2d6bfda654ccfe527fd2bca8c9a40321
   username :: Lib.User -> GHC.Base.String
   RecSel Left Lib.User
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SL),1*U(1*U,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Lib.User) ->
                  case ds of wild { Lib.User ds1 ds2 -> ds1 }) -}
+instance GHC.Classes.Eq [Lib.User] = Lib.$fEqUser
 instance GHC.Show.Show [Lib.User] = Lib.$fShowUser
 "SPEC/Lib $fApplicativeReaderT @ IO _" [ALWAYS] forall @ r
                                                        ($dApplicative :: GHC.Base.Applicative

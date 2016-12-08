@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-12-07 13:17:21.353206 UTC
+2016-12-08 12:11:01.860683 UTC
 
 interface main@main:Main 8001
-  interface hash: b90c0e8e12eefefcda1e1c8b3fa85706
-  ABI hash: 779dc83c52f3f48a37edb1f3d1e64e10
+  interface hash: 2dae9f266a40340bea947b9168479abd
+  ABI hash: 81e449ee3b28c33805bc1b9201c51506
   export-list hash: 39b14a318b9fe1afaadbefb1976eb0e2
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: fc378b88a4beb309aa328ea1e593ce41
@@ -142,7 +142,7 @@ family instance modules: attoparsec-0.13.1.0@attoparsec-0.13.1.0-5Olk1S76r1CDYzF
                          zlib-0.6.1.2@zlib-0.6.1.2-4CWLN1T27kOJhNvXgy46ZV:Codec.Compression.Zlib.Stream
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
 import  -/  ghc-prim-0.5.0.0:GHC.Types 7378e41b7749213c8c88ceb6b0665d4c
-import  -/  transactionServer-0.1.0.0@transactionServer-0.1.0.0-50FNYovDyX86t2sBeK4Aso:Lib 32596dea4042b2216291dcea58a7d7c7
+import  -/  transactionServer-0.1.0.0@transactionServer-0.1.0.0-50FNYovDyX86t2sBeK4Aso:Lib ecd1fd64e2820f1149c5b892839e83aa
 d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule :: GHC.Types.Module
   {- HasNoCafRefs, Strictness: m,
@@ -155,12 +155,12 @@ d6831ef04cb9301b090dfae6f7bb7ec7
   $trModule2 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "main"#) -}
-7d73fac3e188e14ee281fef8f5f4b3a5
+45269802d634d695869ab76fdc798693
   main :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-249949c155678a224d68b3a6ea59d75e
+d987f01a431d7659a3bcebbe0f61cca1
   main1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
