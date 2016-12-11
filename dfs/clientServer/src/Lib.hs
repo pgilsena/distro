@@ -37,3 +37,11 @@ users :: [User]
 users = [ User 1 "Isaac" "Newton"
         , User 2 "Albert" "Einstein"
         ]
+
+processArgs :: [String] -> IO()
+processArgs (firstArg:restOfArgs)
+  | firstArg == "uploadFile" = -- TODO: send request
+  | firstArg == "downloadFile" =  -- TODO: send request
+  | firstArg == "createUser" = -- TODO: send request
+  | firstArg == "deleteUser" = -- TODO: send request
+  | firstArg == "deleteFile" = -- TODO: send request
