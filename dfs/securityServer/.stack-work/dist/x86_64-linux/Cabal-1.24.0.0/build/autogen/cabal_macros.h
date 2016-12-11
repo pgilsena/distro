@@ -21,6 +21,13 @@
   (major1) == 4 && (major2) <  9 || \
   (major1) == 4 && (major2) == 9 && (minor) <= 0)
 
+/* package containers-0.5.7.1 */
+#define VERSION_containers "0.5.7.1"
+#define MIN_VERSION_containers(major1,major2,minor) (\
+  (major1) <  0 || \
+  (major1) == 0 && (major2) <  5 || \
+  (major1) == 0 && (major2) == 5 && (minor) <= 7)
+
 /* package mongoDB-2.1.1.1 */
 #define VERSION_mongoDB "2.1.1.1"
 #define MIN_VERSION_mongoDB(major1,major2,minor) (\
@@ -126,7 +133,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "securityServer-0.1.0.0-9XLddLaAHKhFXLsvzYRjA3"
+#define CURRENT_COMPONENT_ID "securityServer-0.1.0.0-3L8fc6varWmAXbQpPYqUSf"
 
-#define CURRENT_PACKAGE_KEY "securityServer-0.1.0.0-9XLddLaAHKhFXLsvzYRjA3"
+#define CURRENT_PACKAGE_KEY "securityServer-0.1.0.0-3L8fc6varWmAXbQpPYqUSf"
 
