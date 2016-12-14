@@ -7,14 +7,16 @@ module Lib
 
 import Data.Aeson
 import Data.Aeson.TH
+import Data.Char
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
+import System.IO
+import System.Environment
 
 data User = User
-  { userId        :: Int
-  , userFirstName :: String
-  , userLastName  :: String
+  { username :: String
+  , password  :: String
   } deriving (Eq, Show)
 
 $(deriveJSON defaultOptions ''User)
@@ -22,7 +24,8 @@ $(deriveJSON defaultOptions ''User)
 type API = "users" :> Get '[JSON] [User]
 
 startApp :: IO ()
-startApp = run 8080 app
+startApp = do 
+	getUserInfo
 
 app :: Application
 app = serve api server
@@ -34,14 +37,30 @@ server :: Server API
 server = return users
 
 users :: [User]
-users = [ User 1 "Isaac" "Newton"
-        , User 2 "Albert" "Einstein"
+users = [ User "Isaac" "Newton"
+        , User "Albert" "Einstein"
         ]
 
-processArgs :: [String] -> IO()
-processArgs (firstArg:restOfArgs)
-  | firstArg == "uploadFile" = -- TODO: send request
-  | firstArg == "downloadFile" =  -- TODO: send request
-  | firstArg == "createUser" = -- TODO: send request
-  | firstArg == "deleteUser" = -- TODO: send request
-  | firstArg == "deleteFile" = -- TODO: send request
+getUserInfo = do  
+    putStrLn "Enter username: "  
+    username <- getLine  
+    putStrLn "Enter password: "  
+    password1 <- getLine
+    putStrLn "Repeat password: "  
+    password2 <- getLine  
+    compareStr username password1 password2
+
+compareStr :: String -> String -> String -> IO ()
+compareStr username pwd1 pwd2
+	| pwd1 == pwd2 = createUser username pwd1
+    | otherwise = getUserInfo
+
+createUser :: String -> String -> IO()
+createUser username password = do
+	let user = User username password
+	printUser user
+
+printUser :: User -> IO ()
+printUser user = do
+	putStr "I think it's working"
+	getUserInfo
