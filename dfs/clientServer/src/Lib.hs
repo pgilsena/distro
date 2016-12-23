@@ -15,12 +15,10 @@ import Control.Applicative
 import Control.Monad
 import Control.Monad.IO.Class
 import Control.Monad.Trans (liftIO)
---import Control.Monad.Trans.Either
 import Control.Monad.Trans.Except
 import Data.Aeson
 import Data.Aeson.TH
 import Data.Char
---import Data.CompactString ()  -- only needed when using ghci
 import Data.Monoid
 import Data.Proxy
 import Data.Text (Text)
@@ -32,7 +30,6 @@ import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
 import Servant.API
---import Servant.Client
 import System.IO
 import System.Environment (getArgs)
 import Text.Printf
@@ -52,13 +49,6 @@ data User = User
 $(deriveJSON defaultOptions ''User)
 
 type API = "users" :> Get '[JSON] [User]
-
-{-startApp :: IO ()
-startApp = do 
-    getUserInfo
-    sendActions-}
-
---type Handler a = EitherT ServantErr IO a
 
 startApp :: IO ()
 startApp = do 
@@ -85,10 +75,22 @@ getUserInfo :: Action IO ()
 getUserInfo = do
     liftIO $ print "Enter username: "
     username <- liftIO getLine
-    compareStr username
+    liftIO $ print "Enter password: "
+    pwd1 <- liftIO getLine
+    liftIO $ print "Repeat password: "
+    pwd2 <- liftIO getLine
+    compareStr username pwd1 pwd2
 
-compareStr :: String -> Action IO ()
-compareStr username = do
-    liftIO $ print "Username is: "
-    liftIO $ print username
-    getUserInfo
+compareStr :: String -> String -> String -> Action IO ()
+compareStr username pwd1 pwd2
+    | pwd1 == pwd2 = createUser username pwd1
+    | otherwise = do
+        liftIO $ print "Passwords did not match"
+        getUserInfo
+
+createUser :: String -> String -> Action IO ()
+createUser username password = do
+    let user = User username password
+    let user2 = ["username" =: username, "password" =: password]
+    liftIO $ print "Created new user"
+    return ()
