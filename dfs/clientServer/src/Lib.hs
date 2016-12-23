@@ -1,5 +1,6 @@
 {-# LANGUAGE DataKinds       #-}
 {-# LANGUAGE TemplateHaskell #-}
+{-# LANGUAGE DeriveGeneric #-}
 {-# LANGUAGE LambdaCase #-}
 {-# LANGUAGE TypeOperators   #-}
 {-# LANGUAGE OverloadedStrings #-}
@@ -9,38 +10,62 @@ module Lib
     ( startApp
     ) where
 
+
+import Control.Applicative
+import Control.Monad
+import Control.Monad.IO.Class
+import Control.Monad.Trans (liftIO)
+--import Control.Monad.Trans.Either
+import Control.Monad.Trans.Except
 import Data.Aeson
 import Data.Aeson.TH
+import Data.Char
+--import Data.CompactString ()  -- only needed when using ghci
+import Data.Monoid
+import Data.Proxy
+import Data.Text (Text)
+import Data.Map (Map)
+import qualified Data.Map as Map
+import GHC.Generics
 import Network
 import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
-import Control.Monad
-import Control.Monad.Trans.Except
-import Data.Char
-import GHC.Generics
+import Servant.API
+--import Servant.Client
 import System.IO
 import System.Environment (getArgs)
-import Database.MongoDB    (Action, Document, Document, Value, access,
+import Text.Printf
+import Database.MongoDB    (Action, Document, Value, access,
                             close, connect, delete, exclude, find,
                             host, insert, insertMany, master, project, rest,
                             select, sort, (=:))
---import Database.MongoDB.BSON
-import Control.Monad.Trans (liftIO)
+
+import qualified Data.Text    as T
+import qualified Data.Text.IO as T
 
 data User = User
-  { username :: String
-  , password  :: String
-  } deriving (Eq, Show)
+    { username :: String
+    , password  :: String
+    } deriving (Eq, Show)
 
 $(deriveJSON defaultOptions ''User)
 
 type API = "users" :> Get '[JSON] [User]
 
+{-startApp :: IO ()
+startApp = do 
+    getUserInfo
+    sendActions-}
+
+--type Handler a = EitherT ServantErr IO a
+
 startApp :: IO ()
 startApp = do 
-	getUserInfo
-	sendActions
+    pipe <- connect (host "127.0.0.1")
+    e <- access pipe master "usersDB" getUserInfo
+    close pipe
+    print e
 
 app :: Application
 app = serve api server
@@ -56,48 +81,14 @@ users = [ User "Isaac" "Newton"
         , User "Albert" "Einstein"
         ]
 
-getUserInfo :: IO ()
-getUserInfo = do  
-    putStrLn "Enter username: "  
-    username <- getLine  
-    putStrLn "Enter password: "  
-    password1 <- getLine
-    putStrLn "Repeat password: "  
-    password2 <- getLine  
-    compareStr username password1 password2
+getUserInfo :: Action IO ()
+getUserInfo = do
+    liftIO $ print "Enter username: "
+    username <- liftIO getLine
+    compareStr username
 
-compareStr :: String -> String -> String -> IO ()
-compareStr username pwd1 pwd2
-	| pwd1 == pwd2 = createUser username pwd1
-    | otherwise = do
-    	putStr "Passwords did not match"
-    	getUserInfo
-
-createUser :: String -> String -> IO()
-createUser username password = do
-	let user = User username password
-	let user2 = ["username" =: username, "password" =: password]
-	-- run $ insert "usersDB" 456 user2
-	return ()
-
--- userMsg = putStr "User created"
-
-sendActions = do
-    putStrLn "Enter 'upload' or 'download'"  
-    command <- getLine
-    checkCommand command
-
-checkCommand :: String -> IO ()
-checkCommand "upload" = uploadFile
-checkCommand "download" = downloadFile
-checkCommand x = errorInput
-
-uploadFile = do
-    putStrLn "Enter name of file: "
-    fileName <- getLine
-    file <- readFile fileName 
-    putStr (map toUpper file)
-    -- fileExist :: FilePath -> IO Bool -- check if file path exists
-
-downloadFile = putStrLn "download"
-errorInput = putStrLn "error"
+compareStr :: String -> Action IO ()
+compareStr username = do
+    liftIO $ print "Username is: "
+    liftIO $ print username
+    getUserInfo
