@@ -54,6 +54,7 @@ startApp :: IO ()
 startApp = do 
     pipe <- connect (host "127.0.0.1")
     e <- access pipe master "usersDB" getUserInfo
+    sendActions
     close pipe
     print e
 
@@ -94,3 +95,24 @@ createUser username password = do
     let user2 = ["username" =: username, "password" =: password]
     liftIO $ print "Created new user"
     return ()
+
+sendActions = do
+    liftIO $ print "Enter 'upload' or 'download'"  
+    command <- liftIO getLine
+    checkCommand command
+
+checkCommand :: String -> IO ()
+checkCommand "upload" = uploadFile
+checkCommand "download" = downloadFile
+checkCommand x = do
+    liftIO $ print "'upload' or 'download' not recognised"
+    sendActions 
+
+uploadFile = do
+    liftIO $ print "Enter name of file: "  
+    fileName <- getLine
+    file <- readFile fileName 
+    putStr (map toUpper file)
+
+downloadFile = liftIO $ print "download"
+errorInput = putStrLn "error"
