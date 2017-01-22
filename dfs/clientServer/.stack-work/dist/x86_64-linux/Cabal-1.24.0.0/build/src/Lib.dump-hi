@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2016-12-24 00:02:18.421255 UTC
+2017-01-22 16:40:43.652867 UTC
 
 interface clientServer-0.1.0.0-HFAItMVLQbeImhGznoevs9:Lib 8001
-  interface hash: f202b8e728ff78eb5a3a1bbdd7c79a60
-  ABI hash: eb77870270496acd3e72cda8a410e8bb
+  interface hash: 2fbed55661c5ef00982c63eb7689f393
+  ABI hash: 5d8eb716e36d232dbcb855eac1a6d0ae
   export-list hash: 2f5574516a75934c2a5abf5527039b46
   orphan hash: 693e9af84d3dfcc71e640e005bdc5e2e
   flag hash: db8d01784fa49848e6b83127176a1bac
@@ -178,7 +178,6 @@ import  -/  base-4.9.0.0:Data.Proxy aa86c72628cf3b1ceb0816ca84687d80
 import  -/  base-4.9.0.0:GHC.Base 8ed3be81c0707b322f975a84ae1bb816
 import  -/  base-4.9.0.0:GHC.Generics 8e2a7658e8b966c1d29d0d5fd4129f38
 import  -/  base-4.9.0.0:GHC.Show 952347a6ab730bcb25c0854d8bc6ca51
-import  -/  base-4.9.0.0:GHC.Unicode 2343b0871604cc5116abba8f24d75b42
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
 import  -/  base-4.9.0.0:System.Environment ee0914a962f5508d0fd404c89ee4999b
 import  -/  base-4.9.0.0:System.IO eb1d40aa793a4047069a5023f2ebcfe3
@@ -206,12 +205,37 @@ import  -/  text-1.2.2.1@text-1.2.2.1-5QpmrLQApEZ4Ly9nMHWY0s:Data.Text.IO 4bbe61
 import  -/  transformers-0.5.2.0@transformers-0.5.2.0:Control.Monad.Trans.Except 71b1d86204f6908788cb5223e3c73193
 import  -/  wai-3.2.1.1@wai-3.2.1.1-f77bMYZGLQBAD3XJrvGiW:Network.Wai f10fb472d685284a8637bf34e58bc7f2
 import  -/  warp-3.2.9@warp-3.2.9-GXzPTh1481F3R0zZxzj1WW:Network.Wai.Handler.Warp 889486c28299135fca865dcd9b9b73e7
-fbb15134c93c46e3860c2455ac992b08
+09c95b41c739ab7794cd2cd66337cd6f
+  $fEqFile :: GHC.Classes.Eq Lib.File
+  DFunId
+  {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:. @ Lib.File Lib.$fEqFile_$c== Lib.$fEqFile_$c/= -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fEqFile_$c/= :: Lib.File -> Lib.File -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SL),1*U(1*U,1*U)><S(SL),1*U(1*U,1*U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Lib.File) (w1 :: Lib.File) ->
+                 case w of ww { Lib.File ww1 ww2 ->
+                 case w1 of ww3 { Lib.File ww4 ww5 ->
+                 Lib.$w$c/= ww1 ww2 ww4 ww5 } }) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fEqFile_$c== :: Lib.File -> Lib.File -> GHC.Types.Bool
+  {- Arity: 2, HasNoCafRefs,
+     Strictness: <S(SL),1*U(1*U,1*U)><S(SL),1*U(1*U,1*U)>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (2, True, False)
+                (\ (w :: Lib.File) (w1 :: Lib.File) ->
+                 case w of ww { Lib.File ww1 ww2 ->
+                 case w1 of ww3 { Lib.File ww4 ww5 ->
+                 Lib.$w$c== ww1 ww2 ww4 ww5 } }) -}
+9da1f905299adf909218f19dffa9352f
   $fEqUser :: GHC.Classes.Eq Lib.User
   DFunId
   {- HasNoCafRefs, Strictness: m, Inline: [ALWAYS] CONLIKE,
      Unfolding: DFun:. @ Lib.User Lib.$fEqUser_$c== Lib.$fEqUser_$c/= -}
-fbb15134c93c46e3860c2455ac992b08
+9da1f905299adf909218f19dffa9352f
   $fEqUser_$c/= :: Lib.User -> Lib.User -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(SL),1*U(1*U,1*U)><S(SL),1*U(1*U,1*U)>,
@@ -220,8 +244,8 @@ fbb15134c93c46e3860c2455ac992b08
                 (\ (w :: Lib.User) (w1 :: Lib.User) ->
                  case w of ww { Lib.User ww1 ww2 ->
                  case w1 of ww3 { Lib.User ww4 ww5 ->
-                 Lib.$w$c/= ww1 ww2 ww4 ww5 } }) -}
-fbb15134c93c46e3860c2455ac992b08
+                 Lib.$w$c/=1 ww1 ww2 ww4 ww5 } }) -}
+9da1f905299adf909218f19dffa9352f
   $fEqUser_$c== :: Lib.User -> Lib.User -> GHC.Types.Bool
   {- Arity: 2, HasNoCafRefs,
      Strictness: <S(SL),1*U(1*U,1*U)><S(SL),1*U(1*U,1*U)>,
@@ -230,8 +254,102 @@ fbb15134c93c46e3860c2455ac992b08
                 (\ (w :: Lib.User) (w1 :: Lib.User) ->
                  case w of ww { Lib.User ww1 ww2 ->
                  case w1 of ww3 { Lib.User ww4 ww5 ->
-                 Lib.$w$c== ww1 ww2 ww4 ww5 } }) -}
-fbb15134c93c46e3860c2455ac992b08
+                 Lib.$w$c==1 ww1 ww2 ww4 ww5 } }) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fFromJSONFile :: Data.Aeson.Types.Class.FromJSON Lib.File
+  DFunId
+  {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
+     Unfolding: InlineRule (0, False, True)
+                Lib.$fFromJSONFile_$cparseJSON
+                  `cast`
+                (Sym (Data.Aeson.Types.Class.N:FromJSON[0] <Lib.File>_N)) -}
+de973fb8509cf0b72f8ae647cc9e6118
+  $fFromJSONFile1 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "fileContents"#) -}
+6455e6bba233f9cfa4b78a4ae121dd22
+  $fFromJSONFile2 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "fileName"#) -}
+604459ea388314e858fab8c5fa19053a
+  $fFromJSONFile3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Object"#) -}
+21efebf6166e50cac02f2819567bd570
+  $fFromJSONFile4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "Lib.File"#) -}
+ef3426ffcf37f0ef03dfbf33e69eb0dd
+  $fFromJSONFile5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "File"#) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fFromJSONFile_$cparseJSON ::
+    Data.Aeson.Types.Internal.Value
+    -> Data.Aeson.Types.Internal.Parser Lib.File
+  {- Arity: 1, Strictness: <S,1*U>,
+     Unfolding: (\ (value :: Data.Aeson.Types.Internal.Value) ->
+                 case value of wild {
+                   DEFAULT
+                   -> Data.Aeson.TH.parseTypeMismatch'
+                        @ Lib.File
+                        Lib.$fFromJSONFile5
+                        Lib.$fFromJSONFile4
+                        Lib.$fFromJSONFile3
+                        (case wild of wild1 {
+                           Data.Aeson.Types.Internal.Array ds1 -> Data.Aeson.TH.valueConName5
+                           Data.Aeson.Types.Internal.String ds1 -> Data.Aeson.TH.valueConName4
+                           Data.Aeson.Types.Internal.Number ds1 -> Data.Aeson.TH.valueConName3
+                           Data.Aeson.Types.Internal.Bool ds1 -> Data.Aeson.TH.valueConName2
+                           Data.Aeson.Types.Internal.Null -> Data.Aeson.TH.valueConName1 })
+                   Data.Aeson.Types.Internal.Object recObj
+                   -> let {
+                        m :: Data.Aeson.Types.Internal.Parser [GHC.Types.Char]
+                        = case Lib.$fFromJSONFile2 of ww { Data.Text.Internal.Text ww1 ww2 ww3 ->
+                          Data.Aeson.TH.$w$clookupField
+                            @ [GHC.Types.Char]
+                            Data.Aeson.Types.Instances.$fFromJSON[]0_$cparseJSON
+                              `cast`
+                            (Sym (Data.Aeson.Types.Class.N:FromJSON[0] <[GHC.Types.Char]>_N))
+                            Lib.$fFromJSONFile4
+                            Lib.$fFromJSONFile5
+                            recObj
+                            ww1
+                            ww2
+                            ww3 }
+                      } in
+                      let {
+                        e :: Data.Aeson.Types.Internal.Parser GHC.Base.String
+                        = case Lib.$fFromJSONFile1 of ww { Data.Text.Internal.Text ww1 ww2 ww3 ->
+                          Data.Aeson.TH.$w$clookupField
+                            @ [GHC.Types.Char]
+                            Data.Aeson.Types.Instances.$fFromJSON[]0_$cparseJSON
+                              `cast`
+                            (Sym (Data.Aeson.Types.Class.N:FromJSON[0] <[GHC.Types.Char]>_N))
+                            Lib.$fFromJSONFile4
+                            Lib.$fFromJSONFile5
+                            recObj
+                            ww1
+                            ww2
+                            ww3 }
+                      } in
+                      (\ @ (f :: * -> *)
+                         @ r
+                         (path :: Data.Aeson.Types.Internal.JSONPath)
+                         (kf :: Data.Aeson.Types.Internal.Failure f r)
+                         (ks :: Data.Aeson.Types.Internal.Success Lib.File f r) ->
+                       m `cast`
+                       (Data.Aeson.Types.Internal.N:Parser[0] <[GHC.Types.Char]>_R)
+                         @ f
+                         @ r
+                         path
+                         kf
+                         (\ (a1 :: [GHC.Types.Char]) ->
+                          e `cast`
+                          (Data.Aeson.Types.Internal.N:Parser[0] <GHC.Base.String>_R)
+                            @ f
+                            @ r
+                            path
+                            kf
+                            (\ (a2 :: GHC.Base.String) -> ks (Lib.File a1 a2))))
+                        `cast`
+                      (Sym (Data.Aeson.Types.Internal.N:Parser[0] <Lib.File>_R)) }) -}
+9da1f905299adf909218f19dffa9352f
   $fFromJSONUser :: Data.Aeson.Types.Class.FromJSON Lib.User
   DFunId
   {- Arity: 1, Strictness: <S,1*U>, Inline: INLINE (sat-args=0),
@@ -245,16 +363,13 @@ fbb15134c93c46e3860c2455ac992b08
 f770efa842df09709deb97e954d111ef
   $fFromJSONUser2 :: Data.Text.Internal.Text
   {- Unfolding: (Data.Text.Show.unpackCString# "username"#) -}
-c03ba8d9ea7d2b3c2ab2fcf9697a12e5
+4e989127efb7518bc235b62f550b6266
   $fFromJSONUser3 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "Object"#) -}
-93c1d7dec6afbd5626b52678701c8109
-  $fFromJSONUser4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "Lib.User"#) -}
-8248c7f46cb3d5e253d03c2de72600a0
-  $fFromJSONUser5 :: [GHC.Types.Char]
+d15bf32d291b214672cd9d74af686164
+  $fFromJSONUser4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "User"#) -}
-fbb15134c93c46e3860c2455ac992b08
+9da1f905299adf909218f19dffa9352f
   $fFromJSONUser_$cparseJSON ::
     Data.Aeson.Types.Internal.Value
     -> Data.Aeson.Types.Internal.Parser Lib.User
@@ -264,9 +379,9 @@ fbb15134c93c46e3860c2455ac992b08
                    DEFAULT
                    -> Data.Aeson.TH.parseTypeMismatch'
                         @ Lib.User
-                        Lib.$fFromJSONUser5
                         Lib.$fFromJSONUser4
                         Lib.$fFromJSONUser3
+                        Lib.$fFromJSONFile3
                         (case wild of wild1 {
                            Data.Aeson.Types.Internal.Array ds1 -> Data.Aeson.TH.valueConName5
                            Data.Aeson.Types.Internal.String ds1 -> Data.Aeson.TH.valueConName4
@@ -282,8 +397,8 @@ fbb15134c93c46e3860c2455ac992b08
                             Data.Aeson.Types.Instances.$fFromJSON[]0_$cparseJSON
                               `cast`
                             (Sym (Data.Aeson.Types.Class.N:FromJSON[0] <[GHC.Types.Char]>_N))
+                            Lib.$fFromJSONUser3
                             Lib.$fFromJSONUser4
-                            Lib.$fFromJSONUser5
                             recObj
                             ww1
                             ww2
@@ -297,8 +412,8 @@ fbb15134c93c46e3860c2455ac992b08
                             Data.Aeson.Types.Instances.$fFromJSON[]0_$cparseJSON
                               `cast`
                             (Sym (Data.Aeson.Types.Class.N:FromJSON[0] <[GHC.Types.Char]>_N))
+                            Lib.$fFromJSONUser3
                             Lib.$fFromJSONUser4
-                            Lib.$fFromJSONUser5
                             recObj
                             ww1
                             ww2
@@ -325,7 +440,60 @@ fbb15134c93c46e3860c2455ac992b08
                             (\ (a2 :: GHC.Base.String) -> ks (Lib.User a1 a2))))
                         `cast`
                       (Sym (Data.Aeson.Types.Internal.N:Parser[0] <Lib.User>_R)) }) -}
-fbb15134c93c46e3860c2455ac992b08
+09c95b41c739ab7794cd2cd66337cd6f
+  $fShowFile :: GHC.Show.Show Lib.File
+  DFunId
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Lib.File
+                  Lib.$fShowFile_$cshowsPrec
+                  Lib.$fShowFile_$cshow
+                  Lib.$fShowFile_$cshowList -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fShowFile1 :: Lib.File -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (\ (w :: Lib.File) (w1 :: GHC.Base.String) ->
+                 case w of ww { Lib.File ww1 ww2 ->
+                 Lib.$w$cshowsPrec 0# ww1 ww2 w1 }) -}
+57eba32709a10a6fa3f31f3b06d5cb08
+  $fShowFile2 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "}"#) -}
+87ffcda81d873f8ab688bfb10a84ade8
+  $fShowFile3 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "fileContents = "#) -}
+426a0df8779752c38e653d95c0219ac9
+  $fShowFile4 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
+d2f021725e5d185041d5d6a9314536e8
+  $fShowFile5 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "fileName = "#) -}
+db9015333275ada1ffefd9186a059630
+  $fShowFile6 :: [GHC.Types.Char]
+  {- Unfolding: (GHC.CString.unpackCString# "File {"#) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fShowFile_$cshow :: Lib.File -> GHC.Base.String
+  {- Arity: 1, Strictness: <S,1*U(1*U,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (x :: Lib.File) ->
+                 Lib.$fShowFile_$cshowsPrec
+                   GHC.Show.shows22
+                   x
+                   (GHC.Types.[] @ GHC.Types.Char)) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fShowFile_$cshowList :: [Lib.File] -> GHC.Show.ShowS
+  {- Arity: 2,
+     Unfolding: (GHC.Show.showList__ @ Lib.File Lib.$fShowFile1) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fShowFile_$cshowsPrec ::
+    GHC.Types.Int -> Lib.File -> GHC.Show.ShowS
+  {- Arity: 3, Strictness: <S(S),1*U(U)><S,1*U(1*U,1*U)><L,U>,
+     Inline: INLINE[0],
+     Unfolding: InlineRule (3, True, False)
+                (\ (w :: GHC.Types.Int) (w1 :: Lib.File) (w2 :: GHC.Base.String) ->
+                 case w of ww { GHC.Types.I# ww1 ->
+                 case w1 of ww2 { Lib.File ww3 ww4 ->
+                 Lib.$w$cshowsPrec ww1 ww3 ww4 w2 } }) -}
+9da1f905299adf909218f19dffa9352f
   $fShowUser :: GHC.Show.Show Lib.User
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -334,28 +502,22 @@ fbb15134c93c46e3860c2455ac992b08
                   Lib.$fShowUser_$cshowsPrec
                   Lib.$fShowUser_$cshow
                   Lib.$fShowUser_$cshowList -}
-fbb15134c93c46e3860c2455ac992b08
+9da1f905299adf909218f19dffa9352f
   $fShowUser1 :: Lib.User -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (\ (w :: Lib.User) (w1 :: GHC.Base.String) ->
                  case w of ww { Lib.User ww1 ww2 ->
-                 Lib.$w$cshowsPrec 0# ww1 ww2 w1 }) -}
-e2b02dd6b9baf3123978e52959bcc58b
+                 Lib.$w$cshowsPrec1 0# ww1 ww2 w1 }) -}
+83615de01546800218976da4f762c027
   $fShowUser2 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# "}"#) -}
-246abaffec0fb007e326fd357a676af6
-  $fShowUser3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "password = "#) -}
-27c8e6cc39b425f23ce708ad02e1b13a
-  $fShowUser4 :: [GHC.Types.Char]
-  {- Unfolding: (GHC.CString.unpackCString# ", "#) -}
-e7a24981e62592a22c89e95503696ea8
-  $fShowUser5 :: [GHC.Types.Char]
+7ede203d17bf34b0397c23d33b27f301
+  $fShowUser3 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "username = "#) -}
-57a597ebb7e38569a6af7ac61b4b8fa8
-  $fShowUser6 :: [GHC.Types.Char]
+da0f1eb272665546f9d871cc5075136c
+  $fShowUser4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "User {"#) -}
-fbb15134c93c46e3860c2455ac992b08
+9da1f905299adf909218f19dffa9352f
   $fShowUser_$cshow :: Lib.User -> GHC.Base.String
   {- Arity: 1, Strictness: <S,1*U(1*U,1*U)>,
      Unfolding: InlineRule (1, True, False)
@@ -364,11 +526,11 @@ fbb15134c93c46e3860c2455ac992b08
                    GHC.Show.shows22
                    x
                    (GHC.Types.[] @ GHC.Types.Char)) -}
-fbb15134c93c46e3860c2455ac992b08
+9da1f905299adf909218f19dffa9352f
   $fShowUser_$cshowList :: [Lib.User] -> GHC.Show.ShowS
   {- Arity: 2,
      Unfolding: (GHC.Show.showList__ @ Lib.User Lib.$fShowUser1) -}
-fbb15134c93c46e3860c2455ac992b08
+9da1f905299adf909218f19dffa9352f
   $fShowUser_$cshowsPrec ::
     GHC.Types.Int -> Lib.User -> GHC.Show.ShowS
   {- Arity: 3, Strictness: <S(S),1*U(U)><S,1*U(1*U,1*U)><L,U>,
@@ -377,8 +539,35 @@ fbb15134c93c46e3860c2455ac992b08
                 (\ (w :: GHC.Types.Int) (w1 :: Lib.User) (w2 :: GHC.Base.String) ->
                  case w of ww { GHC.Types.I# ww1 ->
                  case w1 of ww2 { Lib.User ww3 ww4 ->
-                 Lib.$w$cshowsPrec ww1 ww3 ww4 w2 } }) -}
-fbb15134c93c46e3860c2455ac992b08
+                 Lib.$w$cshowsPrec1 ww1 ww3 ww4 w2 } }) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fToJSONFile :: Data.Aeson.Types.Class.ToJSON Lib.File
+  DFunId
+  {- Strictness: m, Inline: [ALWAYS] CONLIKE,
+     Unfolding: DFun:.
+                  @ Lib.File
+                  Lib.$fToJSONFile_$ctoJSON
+                  Lib.$fToJSONFile_$ctoEncoding -}
+78d0ec61bcca77aebd8d597aadb4ffaf
+  $fToJSONFile1 :: GHC.Types.Int
+  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 4#) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fToJSONFile_$ctoEncoding ::
+    Lib.File -> Data.Aeson.Types.Internal.Encoding
+  {- Arity: 1, Strictness: <S,1*U(U,U)>, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Lib.File) ->
+                 case w of ww { Lib.File ww1 ww2 -> Lib.$w$ctoEncoding ww1 ww2 }) -}
+09c95b41c739ab7794cd2cd66337cd6f
+  $fToJSONFile_$ctoJSON ::
+    Lib.File -> Data.Aeson.Types.Internal.Value
+  {- Arity: 1, Strictness: <S,1*U(1*U,1*U)>m1, Inline: INLINE[0],
+     Unfolding: InlineRule (1, True, False)
+                (\ (w :: Lib.File) ->
+                 case w of ww { Lib.File ww1 ww2 ->
+                 case Lib.$w$ctoJSON ww1 ww2 of ww3 { Unit# ww4 ->
+                 Data.Aeson.Types.Internal.Object ww4 } }) -}
+9da1f905299adf909218f19dffa9352f
   $fToJSONUser :: Data.Aeson.Types.Class.ToJSON Lib.User
   DFunId
   {- Strictness: m, Inline: [ALWAYS] CONLIKE,
@@ -386,25 +575,35 @@ fbb15134c93c46e3860c2455ac992b08
                   @ Lib.User
                   Lib.$fToJSONUser_$ctoJSON
                   Lib.$fToJSONUser_$ctoEncoding -}
-c82c8ce3c8bb038fe48e8f8050561f1f
-  $fToJSONUser1 :: GHC.Types.Int
-  {- HasNoCafRefs, Unfolding: (GHC.Types.I# 4#) -}
-fbb15134c93c46e3860c2455ac992b08
+9da1f905299adf909218f19dffa9352f
   $fToJSONUser_$ctoEncoding ::
     Lib.User -> Data.Aeson.Types.Internal.Encoding
   {- Arity: 1, Strictness: <S,1*U(U,U)>, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ (w :: Lib.User) ->
-                 case w of ww { Lib.User ww1 ww2 -> Lib.$w$ctoEncoding ww1 ww2 }) -}
-fbb15134c93c46e3860c2455ac992b08
+                 case w of ww { Lib.User ww1 ww2 ->
+                 Lib.$w$ctoEncoding1 ww1 ww2 }) -}
+9da1f905299adf909218f19dffa9352f
   $fToJSONUser_$ctoJSON ::
     Lib.User -> Data.Aeson.Types.Internal.Value
   {- Arity: 1, Strictness: <S,1*U(1*U,1*U)>m1, Inline: INLINE[0],
      Unfolding: InlineRule (1, True, False)
                 (\ (w :: Lib.User) ->
                  case w of ww { Lib.User ww1 ww2 ->
-                 case Lib.$w$ctoJSON ww1 ww2 of ww3 { Unit# ww4 ->
+                 case Lib.$w$ctoJSON1 ww1 ww2 of ww3 { Unit# ww4 ->
                  Data.Aeson.Types.Internal.Object ww4 } }) -}
+4f51ec352a5ad419c0876376d879c916
+  $tc'File :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   13426882996071919409##
+                   16148185347737758609##
+                   Lib.$trModule
+                   Lib.$tc'File1) -}
+7aa24dd78f0e4b365bb0f8785dc9e491
+  $tc'File1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "'File"#) -}
 1eddbd2dc9e91b7030daa3c0a4dacb32
   $tc'User :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
@@ -417,6 +616,18 @@ a8cf3f0e769a7a5b5d335e16c271744c
   $tc'User1 :: GHC.Types.TrName
   {- HasNoCafRefs, Strictness: m1,
      Unfolding: (GHC.Types.TrNameS "'User"#) -}
+e612e544f3ba51e14676c4d5ea165b75
+  $tcFile :: GHC.Types.TyCon
+  {- HasNoCafRefs, Strictness: m,
+     Unfolding: (GHC.Types.TyCon
+                   11482256778997143796##
+                   6040784458255496594##
+                   Lib.$trModule
+                   Lib.$tcFile1) -}
+de92786963a744b5e347baef834118b7
+  $tcFile1 :: GHC.Types.TrName
+  {- HasNoCafRefs, Strictness: m1,
+     Unfolding: (GHC.Types.TrNameS "File"#) -}
 b752401bab4f4ef0c55bc15d076bc3f8
   $tcUser :: GHC.Types.TyCon
   {- HasNoCafRefs, Strictness: m,
@@ -461,6 +672,25 @@ b18d2376dd9e805e6aeb8e1d9fae7680
                    -> case GHC.Base.eqString ww1 ww3 of wild1 {
                         GHC.Types.False -> GHC.Types.True
                         GHC.Types.True -> GHC.Types.False } }) -}
+efa846511ed47b587cea4dcdc83af2aa
+  $w$c/=1 ::
+    GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Types.Bool
+  {- Arity: 4, HasNoCafRefs,
+     Strictness: <S,1*U><L,1*U><S,1*U><L,1*U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Base.String)
+                   (ww1 :: GHC.Base.String)
+                   (ww2 :: GHC.Base.String)
+                   (ww3 :: GHC.Base.String) ->
+                 case GHC.Base.eqString ww ww2 of wild {
+                   GHC.Types.False -> GHC.Types.True
+                   GHC.Types.True
+                   -> case GHC.Base.eqString ww1 ww3 of wild1 {
+                        GHC.Types.False -> GHC.Types.True
+                        GHC.Types.True -> GHC.Types.False } }) -}
 e5d35d24c0b0ccf359149a3c7a9a0dcd
   $w$c== ::
     GHC.Base.String
@@ -477,7 +707,23 @@ e5d35d24c0b0ccf359149a3c7a9a0dcd
                  case GHC.Base.eqString ww ww2 of wild {
                    GHC.Types.False -> GHC.Types.False
                    GHC.Types.True -> GHC.Base.eqString ww1 ww3 }) -}
-c6b88761165f86616454ab3da4a3b94e
+420b98cf825d43e683a31e9e1b0d8c17
+  $w$c==1 ::
+    GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Types.Bool
+  {- Arity: 4, HasNoCafRefs,
+     Strictness: <S,1*U><L,1*U><S,1*U><L,1*U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Base.String)
+                   (ww1 :: GHC.Base.String)
+                   (ww2 :: GHC.Base.String)
+                   (ww3 :: GHC.Base.String) ->
+                 case GHC.Base.eqString ww ww2 of wild {
+                   GHC.Types.False -> GHC.Types.False
+                   GHC.Types.True -> GHC.Base.eqString ww1 ww3 }) -}
+2ee42c0f1f925ee3ab26bb3ab367d6fd
   $w$cshowsPrec ::
     GHC.Prim.Int#
     -> GHC.Base.String
@@ -494,10 +740,10 @@ c6b88761165f86616454ab3da4a3b94e
                    = \ (x :: GHC.Base.String)[OneShot] ->
                      GHC.Base.++
                        @ GHC.Types.Char
-                       Lib.$fShowUser6
+                       Lib.$fShowFile6
                        (GHC.Base.++
                           @ GHC.Types.Char
-                          Lib.$fShowUser5
+                          Lib.$fShowFile5
                           (GHC.Types.:
                              @ GHC.Types.Char
                              GHC.Show.shows8
@@ -508,10 +754,10 @@ c6b88761165f86616454ab3da4a3b94e
                                    GHC.Show.shows8
                                    (GHC.Base.++
                                       @ GHC.Types.Char
-                                      Lib.$fShowUser4
+                                      Lib.$fShowFile4
                                       (GHC.Base.++
                                          @ GHC.Types.Char
-                                         Lib.$fShowUser3
+                                         Lib.$fShowFile3
                                          (GHC.Types.:
                                             @ GHC.Types.Char
                                             GHC.Show.shows8
@@ -522,7 +768,64 @@ c6b88761165f86616454ab3da4a3b94e
                                                   GHC.Show.shows8
                                                   (GHC.Base.++
                                                      @ GHC.Types.Char
-                                                     Lib.$fShowUser2
+                                                     Lib.$fShowFile2
+                                                     x))))))))))
+                 } in
+                 case GHC.Prim.tagToEnum#
+                        @ GHC.Types.Bool
+                        (GHC.Prim.>=# ww 11#) of wild {
+                   GHC.Types.False -> p w
+                   GHC.Types.True
+                   -> GHC.Types.:
+                        @ GHC.Types.Char
+                        GHC.Show.shows9
+                        (p (GHC.Types.: @ GHC.Types.Char GHC.Show.shows6 w)) }) -}
+5034f3b2fd957abdfbfab53cfadfd8f0
+  $w$cshowsPrec1 ::
+    GHC.Prim.Int#
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+    -> GHC.Base.String
+  {- Arity: 4, Strictness: <S,U><L,1*U><L,1*U><L,U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Prim.Int#)
+                   (ww1 :: GHC.Base.String)
+                   (ww2 :: GHC.Base.String)
+                   (w :: GHC.Base.String) ->
+                 let {
+                   p :: GHC.Show.ShowS {- Arity: 1, Strictness: <L,1*U> -}
+                   = \ (x :: GHC.Base.String)[OneShot] ->
+                     GHC.Base.++
+                       @ GHC.Types.Char
+                       Lib.$fShowUser4
+                       (GHC.Base.++
+                          @ GHC.Types.Char
+                          Lib.$fShowUser3
+                          (GHC.Types.:
+                             @ GHC.Types.Char
+                             GHC.Show.shows8
+                             (GHC.Show.showLitString
+                                ww1
+                                (GHC.Types.:
+                                   @ GHC.Types.Char
+                                   GHC.Show.shows8
+                                   (GHC.Base.++
+                                      @ GHC.Types.Char
+                                      Lib.$fShowFile4
+                                      (GHC.Base.++
+                                         @ GHC.Types.Char
+                                         Lib.$fShowUser2
+                                         (GHC.Types.:
+                                            @ GHC.Types.Char
+                                            GHC.Show.shows8
+                                            (GHC.Show.showLitString
+                                               ww2
+                                               (GHC.Types.:
+                                                  @ GHC.Types.Char
+                                                  GHC.Show.shows8
+                                                  (GHC.Base.++
+                                                     @ GHC.Types.Char
+                                                     Lib.$fShowFile2
                                                      x))))))))))
                  } in
                  case GHC.Prim.tagToEnum#
@@ -539,8 +842,64 @@ c6b88761165f86616454ab3da4a3b94e
     GHC.Base.String
     -> GHC.Base.String -> Data.Aeson.Types.Internal.Encoding
   {- Arity: 2, Strictness: <L,U><L,U>, Inline: [0] -}
-7648e08131053b0b797ce9d2aceffc87
+d5f800646c5672895f048d61d3da904c
+  $w$ctoEncoding1 ::
+    GHC.Base.String
+    -> GHC.Base.String -> Data.Aeson.Types.Internal.Encoding
+  {- Arity: 2, Strictness: <L,U><L,U>, Inline: [0] -}
+c29c275faa24fe13e81e87df7dadc878
   $w$ctoJSON ::
+    GHC.Base.String
+    -> GHC.Base.String -> (# Data.Aeson.Types.Internal.Object #)
+  {- Arity: 2, Strictness: <L,1*U><L,1*U>, Inline: [0],
+     Unfolding: (\ (ww :: GHC.Base.String) (ww1 :: GHC.Base.String) ->
+                 case Data.Aeson.Types.Internal.$sfromList1
+                        @ Data.Aeson.Types.Internal.Value
+                        (GHC.Types.:
+                           @ Data.Aeson.Types.Internal.Pair
+                           (Lib.$fFromJSONFile2,
+                            case GHC.Magic.runRW#
+                                   @ 'GHC.Types.PtrRepLifted
+                                   @ Data.Text.Internal.Text
+                                   (\ (s1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                                    case GHC.Prim.newByteArray#
+                                           @ GHC.Prim.RealWorld
+                                           8#
+                                           s1 of ds1 { (#,#) ipv ipv1 ->
+                                    Lib.$wouter1
+                                      (Data.Text.Array.MArray @ GHC.Prim.RealWorld ipv1)
+                                      Lib.$fToJSONFile1
+                                      ww
+                                      0#
+                                      ipv }) of ds1 { (#,#) ipv ipv1 ->
+                            case ipv1 of dt { Data.Text.Internal.Text ipv2 ipv3 ipv4 ->
+                            Data.Aeson.Types.Internal.String dt } })
+                           (GHC.Types.:
+                              @ Data.Aeson.Types.Internal.Pair
+                              (Lib.$fFromJSONFile1,
+                               case GHC.Magic.runRW#
+                                      @ 'GHC.Types.PtrRepLifted
+                                      @ Data.Text.Internal.Text
+                                      (\ (s1 :: GHC.Prim.State# GHC.Prim.RealWorld)[OneShot] ->
+                                       case GHC.Prim.newByteArray#
+                                              @ GHC.Prim.RealWorld
+                                              8#
+                                              s1 of ds1 { (#,#) ipv ipv1 ->
+                                       Lib.$wouter
+                                         (Data.Text.Array.MArray @ GHC.Prim.RealWorld ipv1)
+                                         Lib.$fToJSONFile1
+                                         ww1
+                                         0#
+                                         ipv }) of ds1 { (#,#) ipv ipv1 ->
+                               case ipv1 of dt { Data.Text.Internal.Text ipv2 ipv3 ipv4 ->
+                               Data.Aeson.Types.Internal.String dt } })
+                              (GHC.Types.[] @ Data.Aeson.Types.Internal.Pair)))
+                        (Data.HashMap.Base.Empty
+                           @ Data.Text.Internal.Text
+                           @ Data.Aeson.Types.Internal.Value) of dt { DEFAULT ->
+                 (# dt #) }) -}
+d852924d237cd5b1b8b4eda30a8a487b
+  $w$ctoJSON1 ::
     GHC.Base.String
     -> GHC.Base.String -> (# Data.Aeson.Types.Internal.Object #)
   {- Arity: 2, Strictness: <L,1*U><L,1*U>, Inline: [0],
@@ -558,9 +917,9 @@ c6b88761165f86616454ab3da4a3b94e
                                            @ GHC.Prim.RealWorld
                                            8#
                                            s1 of ds1 { (#,#) ipv ipv1 ->
-                                    Lib.$wouter1
+                                    Lib.$wouter3
                                       (Data.Text.Array.MArray @ GHC.Prim.RealWorld ipv1)
-                                      Lib.$fToJSONUser1
+                                      Lib.$fToJSONFile1
                                       ww
                                       0#
                                       ipv }) of ds1 { (#,#) ipv ipv1 ->
@@ -577,9 +936,9 @@ c6b88761165f86616454ab3da4a3b94e
                                               @ GHC.Prim.RealWorld
                                               8#
                                               s1 of ds1 { (#,#) ipv ipv1 ->
-                                       Lib.$wouter
+                                       Lib.$wouter2
                                          (Data.Text.Array.MArray @ GHC.Prim.RealWorld ipv1)
-                                         Lib.$fToJSONUser1
+                                         Lib.$fToJSONFile1
                                          ww1
                                          0#
                                          ipv }) of ds1 { (#,#) ipv ipv1 ->
@@ -590,11 +949,6 @@ c6b88761165f86616454ab3da4a3b94e
                            @ Data.Text.Internal.Text
                            @ Data.Aeson.Types.Internal.Value) of dt { DEFAULT ->
                  (# dt #) }) -}
-acfb24e03f159553f612102c99bad798
-  $wgetUserInfo ::
-    GHC.Prim.State# GHC.Prim.RealWorld
-    -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 1, Strictness: <S,U>, Inline: [0] -}
 201a216d52d9a76fe130bb60cc528d92
   $wouter ::
     Data.Text.Array.MArray GHC.Prim.RealWorld
@@ -617,27 +971,67 @@ acfb24e03f159553f612102c99bad798
           Data.Text.Internal.Text #)
   {- Arity: 5, Strictness: <L,U(U)><L,U(U)><S,1*U><S,U><S,U>,
      Inline: [0] -}
-bc5d39077925352e13d0c9aa130d1af7
+7a7945f9cae579dab37b125ad3756b19
+  $wouter2 ::
+    Data.Text.Array.MArray GHC.Prim.RealWorld
+    -> GHC.Types.Int
+    -> [GHC.Types.Char]
+    -> GHC.Prim.Int#
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Text.Internal.Text #)
+  {- Arity: 5, Strictness: <L,U(U)><L,U(U)><S,1*U><S,U><S,U>,
+     Inline: [0] -}
+af4f78016370ba5af4b4993e1ab0fe5b
+  $wouter3 ::
+    Data.Text.Array.MArray GHC.Prim.RealWorld
+    -> GHC.Types.Int
+    -> [GHC.Types.Char]
+    -> GHC.Prim.Int#
+    -> GHC.Prim.State# GHC.Prim.RealWorld
+    -> (# GHC.Prim.State# GHC.Prim.RealWorld,
+          Data.Text.Internal.Text #)
+  {- Arity: 5, Strictness: <L,U(U)><L,U(U)><S,1*U><S,U><S,U>,
+     Inline: [0] -}
+be6192942949b88f331666a81d32701e
   type API =
     "users"
     Servant.API.Sub.:> Servant.API.Verbs.Get
                          '[Servant.API.ContentTypes.JSON] [Lib.User]
-fbb15134c93c46e3860c2455ac992b08
+09c95b41c739ab7794cd2cd66337cd6f
+  data File
+    = File {fileName :: GHC.Base.String,
+            fileContents :: GHC.Base.String}
+9da1f905299adf909218f19dffa9352f
   data User
     = User {username :: GHC.Base.String, password :: GHC.Base.String}
-9fe65e67ba669fa2c1d31ee769b8c2d8
+66da4bc2897d6f890f4bd7fdd5afca6c
+  fileContents :: Lib.File -> GHC.Base.String
+  RecSel Left Lib.File
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(A,1*U)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Lib.File) ->
+                 case ds of wild { Lib.File ds1 ds2 -> ds2 }) -}
+991480728e69b76cab7c00b30fa11e79
+  fileName :: Lib.File -> GHC.Base.String
+  RecSel Left Lib.File
+  {- Arity: 1, HasNoCafRefs, Strictness: <S(SL),1*U(1*U,A)>,
+     Unfolding: InlineRule (1, True, False)
+                (\ (ds :: Lib.File) ->
+                 case ds of wild { Lib.File ds1 ds2 -> ds1 }) -}
+e74760a8bfe7bcfa6a2aecae463fcb30
   password :: Lib.User -> GHC.Base.String
   RecSel Left Lib.User
   {- Arity: 1, HasNoCafRefs, Strictness: <S(LS),1*U(A,1*U)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Lib.User) ->
                  case ds of wild { Lib.User ds1 ds2 -> ds2 }) -}
-d28825bc58295782528838bc3e38e877
+d3b72cff03e8cdcd3536fbe48f882ce0
   startApp :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-a78c08c60e8427903f92163442ae3061
+6a42298617c3d49f4bdb7553f02bf88d
   startApp1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -657,52 +1051,42 @@ a78c08c60e8427903f92163442ae3061
                         Lib.startApp4
                         Database.MongoDB.Connection.defaultPort
                         ipv of ds2 { (#,#) ipv2 ipv3 ->
-                 case Lib.$wgetUserInfo ipv2 of ds3 { (#,#) ipv4 ipv5 ->
-                 case Lib.startApp3 ipv4 of ds4 { (#,#) ipv6 ipv7 ->
-                 case ipv3 of wild1 { Database.MongoDB.Internal.Protocol.Pipeline ds5 ds6 ds7 ds8 ->
-                 case ds7 of wild2 { GHC.Conc.Sync.ThreadId tid1 ->
-                 case GHC.Prim.killThread#
-                        @ GHC.Exception.SomeException
-                        tid1
-                        Lib.startApp2
-                        ipv6 of s1 { DEFAULT ->
-                 case ds5 of wild3 { GHC.MVar.MVar mvar# ->
-                 case GHC.Prim.readMVar#
-                        @ GHC.Prim.RealWorld
-                        @ Database.MongoDB.Transport.Transport
-                        mvar#
-                        s1 of ds9 { (#,#) ipv8 ipv9 ->
-                 case ipv9 of wild4 { Database.MongoDB.Transport.Transport ds10 ds11 ds12 ds13 ->
-                 case ds13 `cast` (GHC.Types.N:IO[0] <()>_R)
-                        ipv8 of ds14 { (#,#) ipv10 ipv11 ->
-                 GHC.IO.Handle.Text.hPutStr2
-                   GHC.IO.Handle.FD.stdout
-                   (GHC.Show.$fShow()_$cshow ipv5)
-                   GHC.Types.True
-                   ipv10 } } } } } } } } } } } } }) -}
-5b2f868d1fab6bc4f4c7a0c1272a3e52
-  startApp2 :: GHC.Exception.SomeException
-  {- Unfolding: (GHC.IO.Exception.$fExceptionAsyncException_$ctoException
-                   GHC.IO.Exception.ThreadKilled) -}
-d4b2f08a1e40d74c13f5c6780b66d3d4
+                 case Lib.startApp3
+                        (Database.MongoDB.Query.MongoContext
+                           ipv3
+                           Database.MongoDB.Query.master
+                           Lib.startApp2)
+                        ipv2 of ds3 { (#,#) ipv4 ipv5 ->
+                 Database.MongoDB.Internal.Protocol.close1 ipv3 ipv4 } } } } }) -}
+8d9eca00280667b0ce849a747bee6c3e
+  startApp2 :: Data.Text.Internal.Text
+  {- Unfolding: (Data.Text.Show.unpackCString# "usersDB"#) -}
+8feb5961b103ecc041ed7d3ea91f2e73
   startApp3 ::
-    GHC.Prim.State# GHC.Prim.RealWorld
+    Database.MongoDB.Query.MongoContext
+    -> GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
-  {- Arity: 1, Strictness: <S,U> -}
+  {- Arity: 2, Strictness: <L,U><S,U> -}
 08d46da1fc7685fb8b90d145e4d03f99
   startApp4 :: [GHC.Types.Char]
   {- Unfolding: (GHC.CString.unpackCString# "127.0.0.1"#) -}
-5275d3f5f3378eb19779ae41e9147d18
+4297dc1b32bed0a1004bea9bc98bc9d2
   username :: Lib.User -> GHC.Base.String
   RecSel Left Lib.User
   {- Arity: 1, HasNoCafRefs, Strictness: <S(SL),1*U(1*U,A)>,
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Lib.User) ->
                  case ds of wild { Lib.User ds1 ds2 -> ds1 }) -}
+instance GHC.Classes.Eq [Lib.File] = Lib.$fEqFile
 instance GHC.Classes.Eq [Lib.User] = Lib.$fEqUser
+instance Data.Aeson.Types.Class.FromJSON [Lib.File]
+  = Lib.$fFromJSONFile
 instance Data.Aeson.Types.Class.FromJSON [Lib.User]
   = Lib.$fFromJSONUser
+instance GHC.Show.Show [Lib.File] = Lib.$fShowFile
 instance GHC.Show.Show [Lib.User] = Lib.$fShowUser
+instance Data.Aeson.Types.Class.ToJSON [Lib.File]
+  = Lib.$fToJSONFile
 instance Data.Aeson.Types.Class.ToJSON [Lib.User]
   = Lib.$fToJSONUser
 vectorised variables:

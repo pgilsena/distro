@@ -45,18 +45,22 @@ data User = User
     { username :: String
     , password  :: String
     } deriving (Eq, Show)
-
 $(deriveJSON defaultOptions ''User)
-
 type API = "users" :> Get '[JSON] [User]
+
+data File = File
+    { fileName :: String
+    --, date :: 
+    , fileContents :: String
+} deriving (Eq, Show)
+$(deriveJSON defaultOptions ''File)
+--type API = "files" :> Get '[JSON] [File]
 
 startApp :: IO ()
 startApp = do 
     pipe <- connect (host "127.0.0.1")
-    e <- access pipe master "usersDB" getUserInfo
-    sendActions
+    access pipe master "usersDB" getUserInfo
     close pipe
-    print e
 
 app :: Application
 app = serve api server
@@ -72,7 +76,6 @@ users = [ User "Isaac" "Newton"
         , User "Albert" "Einstein"
         ]
 
-getUserInfo :: Action IO ()
 getUserInfo = do
     liftIO $ print "Enter username: "
     username <- liftIO getLine
@@ -92,27 +95,48 @@ compareStr username pwd1 pwd2
 createUser :: String -> String -> Action IO ()
 createUser username password = do
     let user = User username password
-    let user2 = ["username" =: username, "password" =: password]
+    insertUsers user
     liftIO $ print "Created new user"
+    getCommand
+
+insertUsers :: User -> Action IO ()
+insertUsers user = do
+  let doc = userToDoc user
+  contactIds <- (insert "contacts" doc)
+  return ()
+
+userToDoc :: User -> Document
+userToDoc (User {username = uN, password = pW}) =
+  ["username" =: (T.pack uN), "password" =: (T.pack pW)]
+
+getCommand = do
+    liftIO $ print "'upload' or 'download'"
+    command <- liftIO getLine
+    compareCommands command
+
+compareCommands :: String -> Action IO ()
+compareCommands command
+    | command == "upload" = createFile
+    | otherwise = do
+        liftIO $ print "Command not upload"
+        getCommand
+
+createFile :: Action IO ()
+createFile = do
+    liftIO $ print "Enter name of file: "  
+    fileName <- liftIO getLine
+    fileContents <- liftIO (readFile fileName)
+    let file = File fileName fileContents
+    insertFile file
+    liftIO $ print "Creating new file"
     return ()
 
-sendActions = do
-    liftIO $ print "Enter 'upload' or 'download'"  
-    command <- liftIO getLine
-    checkCommand command
+insertFile :: File -> Action IO ()
+insertFile file = do
+  let doc = fileToDoc file
+  fileIds <- (insert "files" doc)
+  return ()
 
-checkCommand :: String -> IO ()
-checkCommand "upload" = uploadFile
-checkCommand "download" = downloadFile
-checkCommand x = do
-    liftIO $ print "'upload' or 'download' not recognised"
-    sendActions 
-
-uploadFile = do
-    liftIO $ print "Enter name of file: "  
-    fileName <- getLine
-    file <- readFile fileName 
-    putStr (map toUpper file)
-
-downloadFile = liftIO $ print "download"
-errorInput = putStrLn "error"
+fileToDoc :: File -> Document
+fileToDoc (File {fileName = fN, fileContents = fC}) =
+  ["fileName" =: (T.pack fN), "fileContents" =: (T.pack fC)]
