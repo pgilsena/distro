@@ -37,7 +37,7 @@ import Database.MongoDB    (Action, Document, Value, access,
                             close, connect, delete, exclude, find,
                             host, insert, insertMany, master, project, rest,
                             select, sort, (=:))
-
+--import Database.MongoDB.BSON
 import qualified Data.Text    as T
 import qualified Data.Text.IO as T
 
@@ -116,13 +116,13 @@ getCommand = do
 
 compareCommands :: String -> Action IO ()
 compareCommands command
-    | command == "upload" = createFile
+    | command == "upload" = uploadFile
     | otherwise = do
-        liftIO $ print "Command not upload"
-        getCommand
+        liftIO $ print "Chose to download"
+        download
 
-createFile :: Action IO ()
-createFile = do
+uploadFile :: Action IO ()
+uploadFile = do
     liftIO $ print "Enter name of file: "  
     fileName <- liftIO getLine
     fileContents <- liftIO (readFile fileName)
@@ -140,3 +140,14 @@ insertFile file = do
 fileToDoc :: File -> Document
 fileToDoc (File {fileName = fN, fileContents = fC}) =
   ["fileName" =: (T.pack fN), "fileContents" =: (T.pack fC)]
+
+download = do
+    liftIO $ print "Enter name of file to download: "  
+    fileName <- liftIO getLine
+    findFile fileName >>= printDocs "Found this: "
+
+findFile :: String -> Action IO [Document]
+findFile fileName = rest =<< find (select ["fileName" =: fileName] "files")
+
+printDocs :: String -> [Document] -> Action IO ()
+printDocs title docs = liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
