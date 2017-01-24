@@ -59,7 +59,7 @@ $(deriveJSON defaultOptions ''File)
 startApp :: IO ()
 startApp = do 
     pipe <- connect (host "127.0.0.1")
-    access pipe master "usersDB" getUserInfo
+    access pipe master "dbase" getUserInfo
     close pipe
 
 app :: Application
@@ -125,6 +125,7 @@ uploadFile :: Action IO ()
 uploadFile = do
     liftIO $ print "Enter name of file: "  
     fileName <- liftIO getLine
+    checkFilenameExists fileName
     fileContents <- liftIO (readFile fileName)
     let file = File fileName fileContents
     insertFile file
@@ -151,3 +152,18 @@ findFile fileName = rest =<< find (select ["fileName" =: fileName] "files")
 
 printDocs :: String -> [Document] -> Action IO ()
 printDocs title docs = liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
+
+checkFilenameExists :: String -> Action IO ()--[Document]
+checkFilenameExists name = do
+    tmp <- rest =<< find (select ["fileName" =: name] "files")
+    --rest =<< find (select ["fileName" =: name] "files")
+    exists tmp
+
+exists :: [Document] -> Action IO ()
+exists str
+    | str == [] = return ()
+    | otherwise = fileAlreadyExists
+
+fileAlreadyExists = do
+    liftIO $ print "Already exists a file with that name in the database"
+    uploadFile  
