@@ -59,7 +59,7 @@ $(deriveJSON defaultOptions ''File)
 startApp :: IO ()
 startApp = do 
     pipe <- connect (host "127.0.0.1")
-    access pipe master "dbase" getUserInfo
+    access pipe master "dbase" firstPrompt
     close pipe
 
 app :: Application
@@ -76,6 +76,38 @@ users = [ User "Isaac" "Newton"
         , User "Albert" "Einstein"
         ]
 
+firstPrompt = do
+    liftIO $ print "'signup' or 'login'"
+    command <- liftIO getLine
+    signInOrLogIn command
+
+signInOrLogIn command
+    | command == "signup" = getUserInfo
+    | command == "login" = getLoginDetails
+    | otherwise = do
+        liftIO $ print "Didn't recognise command, try again"
+        firstPrompt
+
+getLoginDetails = do
+    liftIO $ print "Enter username: "
+    username <- liftIO getLine
+    liftIO $ print "Enter password: "
+    pwd <- liftIO getLine
+    tmp username pwd
+
+tmp :: String -> String -> Action IO ()
+tmp username pwd = checkDB username pwd
+
+checkDB :: String -> String -> Action IO ()
+checkDB name pwd = do 
+    result <- rest =<< find (select ["username" =: name, "password" =: pwd] "contacts")
+    checkUserDetails result
+
+checkUserDetails :: [Document] -> Action IO ()
+checkUserDetails docs
+    | docs == [] = getLoginDetails
+    | otherwise = getCommand
+
 getUserInfo = do
     liftIO $ print "Enter username: "
     username <- liftIO getLine
@@ -83,10 +115,10 @@ getUserInfo = do
     pwd1 <- liftIO getLine
     liftIO $ print "Repeat password: "
     pwd2 <- liftIO getLine
-    compareStr username pwd1 pwd2
+    comparePasswords username pwd1 pwd2
 
-compareStr :: String -> String -> String -> Action IO ()
-compareStr username pwd1 pwd2
+comparePasswords :: String -> String -> String -> Action IO ()
+comparePasswords username pwd1 pwd2
     | pwd1 == pwd2 = createUser username pwd1
     | otherwise = do
         liftIO $ print "Passwords did not match"
@@ -117,9 +149,10 @@ getCommand = do
 compareCommands :: String -> Action IO ()
 compareCommands command
     | command == "upload" = uploadFile
+    | command == "download" = download
     | otherwise = do
-        liftIO $ print "Chose to download"
-        download
+        liftIO $ print "Didn't recognise command, try again"
+        getCommand
 
 uploadFile :: Action IO ()
 uploadFile = do
@@ -150,15 +183,6 @@ download = do
 findFile :: String -> Action IO [Document]
 findFile fileName = rest =<< find (select ["fileName" =: fileName] "files")
 
-printDocs :: String -> [Document] -> Action IO ()
-printDocs title docs = liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
-
-checkFilenameExists :: String -> Action IO ()--[Document]
-checkFilenameExists name = do
-    tmp <- rest =<< find (select ["fileName" =: name] "files")
-    --rest =<< find (select ["fileName" =: name] "files")
-    exists tmp
-
 exists :: [Document] -> Action IO ()
 exists str
     | str == [] = return ()
@@ -166,4 +190,16 @@ exists str
 
 fileAlreadyExists = do
     liftIO $ print "Already exists a file with that name in the database"
-    uploadFile  
+    uploadFile
+
+printDocs :: String -> [Document] -> Action IO ()
+printDocs title docs = liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
+
+checkFilenameExists :: String -> Action IO ()--[Document]
+checkFilenameExists name = do
+    tmp <- rest =<< find (select ["fileName" =: name] "files")
+    exists tmp
+  
+{-checkCommands :: String -> Action IO ()
+checkCommands "signin" = login
+checkCommands "" -}

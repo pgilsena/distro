@@ -1,10 +1,10 @@
 
 ==================== FINAL INTERFACE ====================
-2017-01-24 13:42:51.516466 UTC
+2017-01-24 19:34:01.073221 UTC
 
 interface clientServer-0.1.0.0-HFAItMVLQbeImhGznoevs9:Lib 8001
-  interface hash: 9d6eaa4ed126f7998d7332a64faf3614
-  ABI hash: 4ce6f920606063175208b1607d660604
+  interface hash: d9ecf466e07bfeadb69aecc41a929e79
+  ABI hash: ab7974abdca881ba4088f41b77165689
   export-list hash: f36e56f2c55bd511cdf256369a5c288a
   orphan hash: b3900682339ba8ea4d829dce9dd7299d
   flag hash: db8d01784fa49848e6b83127176a1bac
@@ -1356,12 +1356,12 @@ c76ceb18235a922aecc027076ba16ee2
      Unfolding: InlineRule (1, True, False)
                 (\ (ds :: Lib.User) ->
                  case ds of wild { Lib.User ds1 ds2 -> ds2 }) -}
-8cb3ce2c71df5e5dd1fdacbdef19149e
+19cc7e56f0f62bfd7f756a54d84b3a56
   startApp :: GHC.Types.IO ()
   {- Arity: 1, Strictness: <S,U>,
      Unfolding: InlineRule (0, True, True)
                 Lib.startApp1 `cast` (Sym (GHC.Types.N:IO[0] <()>_R)) -}
-4cf0306b82f677eaab2a8390cea35071
+c278156f70a585eff878fa55fd057eba
   startApp1 ::
     GHC.Prim.State# GHC.Prim.RealWorld
     -> (# GHC.Prim.State# GHC.Prim.RealWorld, () #)
@@ -1388,9 +1388,9 @@ c76ceb18235a922aecc027076ba16ee2
                            Lib.startApp2)
                         ipv2 of ds3 { (#,#) ipv4 ipv5 ->
                  Database.MongoDB.Internal.Protocol.close1 ipv3 ipv4 } } } } }) -}
-8d9eca00280667b0ce849a747bee6c3e
+e998c141089c0d971c30cf4ee6cf37dd
   startApp2 :: Data.Text.Internal.Text
-  {- Unfolding: (Data.Text.Show.unpackCString# "usersDB"#) -}
+  {- Unfolding: (Data.Text.Show.unpackCString# "dbase"#) -}
 7d93cf9765f723d7417a051da0204211
   startApp3 ::
     Database.MongoDB.Query.MongoContext
