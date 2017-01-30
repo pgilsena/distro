@@ -1,9 +1,9 @@
 
 ==================== FINAL INTERFACE ====================
-2017-01-24 19:34:01.073221 UTC
+2017-01-30 21:42:39.512574 UTC
 
 interface clientServer-0.1.0.0-HFAItMVLQbeImhGznoevs9:Lib 8001
-  interface hash: d9ecf466e07bfeadb69aecc41a929e79
+  interface hash: 8bfc4768c115fba3b6f6603a44e854eb
   ABI hash: ab7974abdca881ba4088f41b77165689
   export-list hash: f36e56f2c55bd511cdf256369a5c288a
   orphan hash: b3900682339ba8ea4d829dce9dd7299d
@@ -177,7 +177,9 @@ import  -/  base-4.9.0.0:Data.Monoid 1efae021212a10c79fd75960dc0a1d99
 import  -/  base-4.9.0.0:Data.OldList 0058409f994fb13ae0616e3f1e5b4dae
 import  -/  base-4.9.0.0:Data.Proxy aa86c72628cf3b1ceb0816ca84687d80
 import  -/  base-4.9.0.0:GHC.Base 8ed3be81c0707b322f975a84ae1bb816
+import  -/  base-4.9.0.0:GHC.Char 3824744793840b1b7a48109a01ef7f24
 import  -/  base-4.9.0.0:GHC.Generics 8e2a7658e8b966c1d29d0d5fd4129f38
+import  -/  base-4.9.0.0:GHC.Num 48f506a8f4ecf06285d0a0706594dcc0
 import  -/  base-4.9.0.0:GHC.Show 952347a6ab730bcb25c0854d8bc6ca51
 import  -/  base-4.9.0.0:Prelude b9bddb97799837fe67a8d00939a5b6c3
 import  -/  base-4.9.0.0:System.Environment ee0914a962f5508d0fd404c89ee4999b

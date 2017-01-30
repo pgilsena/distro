@@ -10,7 +10,6 @@ module Lib
     ( startApp
     ) where
 
-
 import Control.Applicative
 import Control.Monad
 import Control.Monad.IO.Class
@@ -127,22 +126,17 @@ comparePasswords username pwd1 pwd2
 createUser :: String -> String -> Action IO ()
 createUser username password = do
     let user = User username password
-    insertUsers user
+    let doc = userToDoc user
+    contactIds <- (insert "contacts" doc)
     liftIO $ print "Created new user"
     getCommand
-
-insertUsers :: User -> Action IO ()
-insertUsers user = do
-  let doc = userToDoc user
-  contactIds <- (insert "contacts" doc)
-  return ()
 
 userToDoc :: User -> Document
 userToDoc (User {username = uN, password = pW}) =
   ["username" =: (T.pack uN), "password" =: (T.pack pW)]
 
 getCommand = do
-    liftIO $ print "'upload' or 'download'"
+    liftIO $ print "'upload', 'download' or 'delete' file"
     command <- liftIO getLine
     compareCommands command
 
@@ -150,6 +144,7 @@ compareCommands :: String -> Action IO ()
 compareCommands command
     | command == "upload" = uploadFile
     | command == "download" = download
+    | command == "delete" = deleteFile
     | otherwise = do
         liftIO $ print "Didn't recognise command, try again"
         getCommand
@@ -161,15 +156,10 @@ uploadFile = do
     checkFilenameExists fileName
     fileContents <- liftIO (readFile fileName)
     let file = File fileName fileContents
-    insertFile file
-    liftIO $ print "Creating new file"
-    return ()
-
-insertFile :: File -> Action IO ()
-insertFile file = do
-  let doc = fileToDoc file
-  fileIds <- (insert "files" doc)
-  return ()
+    let doc = fileToDoc file
+    fileIds <- (insert "files" doc)
+    liftIO $ print "Uploading file"
+    getCommand
 
 fileToDoc :: File -> Document
 fileToDoc (File {fileName = fN, fileContents = fC}) =
@@ -199,7 +189,34 @@ checkFilenameExists :: String -> Action IO ()--[Document]
 checkFilenameExists name = do
     tmp <- rest =<< find (select ["fileName" =: name] "files")
     exists tmp
-  
-{-checkCommands :: String -> Action IO ()
-checkCommands "signin" = login
-checkCommands "" -}
+
+encryptSessionKey :: String -> Int -> [String]
+encryptSessionKey strToEncrypt shiftBy = do
+  let strToNum = map ord strToEncrypt
+  let plusKey = map (+shiftBy) strToNum 
+  let numToChar = map chr plusKey
+  return numToChar
+
+decryptSessionKey :: String -> Int -> [String]
+decryptSessionKey strToDecrypt shiftBy = do
+    let strToNum = map ord strToDecrypt
+    let minusKey = map (+(-shiftBy)) strToNum 
+    let numToChar = map chr minusKey
+    return numToChar
+
+deleteFile = do
+    liftIO $ print "Enter name of file: "  
+    fileName <- liftIO getLine 
+    tmp <- rest =<< find (select ["fileName" =: fileName] "files")
+    deleteExists tmp
+    deleteEntry fileName
+    getCommand
+
+deleteExists :: [Document] -> Action IO ()
+deleteExists str
+    | str /= [] = return ()
+    | otherwise = do 
+        liftIO $ print "File not in database"  
+        deleteFile
+
+deleteEntry file = delete (select ["fileName" =: (T.pack file)] "files")
