@@ -171,8 +171,9 @@ download = do
     liftIO $ print "Enter name of file to download: "  
     fileName <- liftIO getLine
     file <- findFile fileName
+    downloadExists file
     liftIO $ print "Found file"  
-    let tmp2 = downloadExists file
+    let tmp2 = lockExists file
     checkLock tmp2
     getCommand
 
@@ -182,10 +183,9 @@ getString label = do
 
 findFile :: String -> Action IO (Maybe Document)
 findFile fileName = findOne (select ["fileName" =: fileName] "files")
---findFile fileName = rest =<< find (select ["fileName" =: fileName] "files")
 
-downloadExists :: Maybe Document -> Bool
-downloadExists file = case file of
+lockExists :: Maybe Document -> Bool
+lockExists file = case file of
     Just file -> getString "fileLock" file
     Nothing -> False
 
@@ -198,15 +198,12 @@ checkLock lock
         liftIO $ print "There is no lock on the file"  
         return ()
 
-{-nothing :: String
-nothing = let nthing = "nothing"
--}
-{-downloadExists :: [Document] -> Action IO ()
-downloadExists str
-    | str /= [] = return ()
-    | otherwise = do
+downloadExists :: Maybe Document -> Action IO ()
+downloadExists file = case file of
+    Just file -> return ()
+    Nothing -> do
         liftIO $ print "No file matches that name in database"
-        download-}  
+        download  
 
 exists :: [Document] -> Action IO ()
 exists str
