@@ -51,6 +51,7 @@ data File = File
     { fileName :: String
     --, date :: 
     , fileContents :: String
+    , fileLock :: Bool
 } deriving (Eq, Show)
 $(deriveJSON defaultOptions ''File)
 --type API = "files" :> Get '[JSON] [File]
@@ -155,23 +156,33 @@ uploadFile = do
     fileName <- liftIO getLine
     checkFilenameExists fileName
     fileContents <- liftIO (readFile fileName)
-    let file = File fileName fileContents
+    let fileLock = False
+    let file = File fileName fileContents fileLock
     let doc = fileToDoc file
     fileIds <- (insert "files" doc)
     liftIO $ print "Uploading file"
     getCommand
 
 fileToDoc :: File -> Document
-fileToDoc (File {fileName = fN, fileContents = fC}) =
-  ["fileName" =: (T.pack fN), "fileContents" =: (T.pack fC)]
+fileToDoc (File {fileName = fN, fileContents = fC, fileLock = fL}) =
+  ["fileName" =: (T.pack fN), "fileContents" =: (T.pack fC), "fileLock" =: fL]
 
 download = do
     liftIO $ print "Enter name of file to download: "  
     fileName <- liftIO getLine
-    findFile fileName >>= printDocs "Found this: "
+    file <- findFile fileName
+    downloadExists file
+    findFile fileName >>= printDocs "File: "
 
 findFile :: String -> Action IO [Document]
 findFile fileName = rest =<< find (select ["fileName" =: fileName] "files")
+
+downloadExists :: [Document] -> Action IO ()
+downloadExists str
+    | str /= [] = return ()
+    | otherwise = do
+        liftIO $ print "No file matches that name in database"
+        download  
 
 exists :: [Document] -> Action IO ()
 exists str
@@ -183,7 +194,9 @@ fileAlreadyExists = do
     uploadFile
 
 printDocs :: String -> [Document] -> Action IO ()
-printDocs title docs = liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
+printDocs title docs = do
+    liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
+    getCommand
 
 checkFilenameExists :: String -> Action IO ()--[Document]
 checkFilenameExists name = do
