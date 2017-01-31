@@ -32,10 +32,10 @@ import Servant.API
 import System.IO
 import System.Environment (getArgs)
 import Text.Printf
-import Database.MongoDB    (Action, Document, Value, access,
-                            close, connect, delete, exclude, find,
+import Database.MongoDB    (Action, Document, Label, Value, access,
+                            close, connect, delete, exclude, find, findOne,
                             host, insert, insertMany, master, project, rest,
-                            select, sort, (=:))
+                            select, sort, typed, valueAt, (=:))
 --import Database.MongoDB.BSON
 import qualified Data.Text    as T
 import qualified Data.Text.IO as T
@@ -96,10 +96,10 @@ getLoginDetails = do
     tmp username pwd
 
 tmp :: String -> String -> Action IO ()
-tmp username pwd = checkDB username pwd
+tmp username pwd = checkDB4usr username pwd
 
-checkDB :: String -> String -> Action IO ()
-checkDB name pwd = do 
+checkDB4usr :: String -> String -> Action IO ()
+checkDB4usr name pwd = do 
     result <- rest =<< find (select ["username" =: name, "password" =: pwd] "contacts")
     checkUserDetails result
 
@@ -171,18 +171,42 @@ download = do
     liftIO $ print "Enter name of file to download: "  
     fileName <- liftIO getLine
     file <- findFile fileName
-    downloadExists file
-    findFile fileName >>= printDocs "File: "
+    liftIO $ print "Found file"  
+    let tmp2 = downloadExists file
+    checkLock tmp2
+    getCommand
 
-findFile :: String -> Action IO [Document]
-findFile fileName = rest =<< find (select ["fileName" =: fileName] "files")
+getString :: Label -> Document -> Bool
+getString label = do
+    typed . (valueAt label)  
 
-downloadExists :: [Document] -> Action IO ()
+findFile :: String -> Action IO (Maybe Document)
+findFile fileName = findOne (select ["fileName" =: fileName] "files")
+--findFile fileName = rest =<< find (select ["fileName" =: fileName] "files")
+
+downloadExists :: Maybe Document -> Bool
+downloadExists file = case file of
+    Just file -> getString "fileLock" file
+    Nothing -> False
+
+checkLock :: Bool -> Action IO ()
+checkLock lock
+    | lock == True = do
+        liftIO $ print "There is a lock on the file, you can download it, but can't upload changes" 
+        return ()
+    | lock == False = do
+        liftIO $ print "There is no lock on the file"  
+        return ()
+
+{-nothing :: String
+nothing = let nthing = "nothing"
+-}
+{-downloadExists :: [Document] -> Action IO ()
 downloadExists str
     | str /= [] = return ()
     | otherwise = do
         liftIO $ print "No file matches that name in database"
-        download  
+        download-}  
 
 exists :: [Document] -> Action IO ()
 exists str
@@ -196,7 +220,7 @@ fileAlreadyExists = do
 printDocs :: String -> [Document] -> Action IO ()
 printDocs title docs = do
     liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
-    getCommand
+    return()
 
 checkFilenameExists :: String -> Action IO ()--[Document]
 checkFilenameExists name = do
