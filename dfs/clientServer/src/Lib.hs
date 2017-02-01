@@ -137,7 +137,7 @@ userToDoc (User {username = uN, password = pW}) =
   ["username" =: (T.pack uN), "password" =: (T.pack pW)]
 
 getCommand = do
-    liftIO $ print "'upload', 'download' or 'delete' file"
+    liftIO $ print "'upload', 'download', 'delete', or 'lock' a file"
     command <- liftIO getLine
     compareCommands command
 
@@ -146,8 +146,27 @@ compareCommands command
     | command == "upload" = uploadFile
     | command == "download" = download
     | command == "delete" = deleteFile
+    | command == "lock" = lockFile
     | otherwise = do
         liftIO $ print "Didn't recognise command, try again"
+        getCommand
+
+lockFile = do
+    liftIO $ print "Enter name of file: "  
+    fileName <- liftIO getLine
+    file <- findOne (select ["fileName" =: fileName] "files")
+    changeLockExists file
+    let contents = contentExists file
+    let fileToChange = File fileName contents True
+    let doc = fileToDoc fileToChange
+    changeLock fileName doc False
+    -- have name, need to get contents, 
+
+changeLockExists :: Maybe Document -> Action IO ()
+changeLockExists file = case file of
+    Just file -> return ()
+    Nothing -> do
+        liftIO $ print "No file matches that name in database"
         getCommand
 
 uploadFile :: Action IO ()
@@ -156,8 +175,7 @@ uploadFile = do
     fileName <- liftIO getLine
     checkFilenameExists fileName
     fileContents <- liftIO (readFile fileName)
-    let fileLock = False
-    let file = File fileName fileContents fileLock
+    let file = File fileName fileContents False
     let doc = fileToDoc file
     fileIds <- (insert "files" doc)
     liftIO $ print "Uploading file"
@@ -170,15 +188,18 @@ fileToDoc (File {fileName = fN, fileContents = fC, fileLock = fL}) =
 download = do
     liftIO $ print "Enter name of file to download: "  
     fileName <- liftIO getLine
-    file <- findFileToDownload fileName
+    file <- findOne (select ["fileName" =: fileName] "files")
     downloadExists file
-    liftIO $ print "Found file"  
-    let fileLock = lockExists file
-    checkLock fileLock
+    liftIO $ print "Found file" 
     let contents = contentExists file
     downloadFile fileName contents
+    -- If there isn't a lock on the file, see does user want to lock the file 
+    let fileLock = lockExists file
+    checkLock fileLock
     requestLockCommand
-    changeLock fileName contents fileLock
+    let fileWithChange = File fileName contents True
+    let doc = fileToDoc fileWithChange
+    changeLock fileName doc False
     getCommand
 
 requestLockCommand = do
@@ -214,9 +235,6 @@ getLock :: Label -> Document -> Bool
 getLock label = do
     typed . (valueAt label)  
 
-findFileToDownload :: String -> Action IO (Maybe Document)
-findFileToDownload fileName = findOne (select ["fileName" =: fileName] "files")
-
 lockExists :: Maybe Document -> Bool
 lockExists file = case file of
     Just file -> getLock "fileLock" file
@@ -226,20 +244,18 @@ checkLock :: Bool -> Action IO ()
 checkLock lock
     | lock == True = do
         liftIO $ print "There is a lock on the file, you can download it, but can't upload changes" 
-        return ()
+        getCommand
     | lock == False = do
         liftIO $ print "There is no lock on the file"  
         return ()
 
-changeLock :: String -> String -> Bool -> Action IO ()
-changeLock fileName fileContent fileLock
-    | fileLock == True = return ()
+changeLock :: String -> Document -> Bool -> Action IO ()
+changeLock fileName fileDoc fileLock
+    | fileLock == True = do
+        liftIO $ print "Already a lock on file, can't change it at this time"
+        return ()
     | fileLock == False = do
-        fileToChange <- findFileToDownload fileName
-        let fileWithChange = File fileName fileContent True
-        let doc = fileToDoc fileWithChange
-        replace (select ["fileName" =: fileName] "files") doc
-        --replace fileToChange doc
+        replace (select ["fileName" =: fileName] "files") fileDoc
         liftIO $ print "Lock applied to file"  
         getCommand
 
