@@ -35,8 +35,7 @@ import System.Environment (getArgs)
 import Text.Printf
 import Database.MongoDB    (Action, Document, Label, Value, access,
                             close, connect, delete, exclude, find, findOne,
-                            host, insert, insertMany, master, project, rest,
-                            select, sort, typed, valueAt, (=:))
+                            host, insert, insertMany, master, project,replace,                            rest, select, sort, typed, valueAt, (=:))
 --import Database.MongoDB.BSON
 import qualified Data.Text    as T
 import qualified Data.Text.IO as T
@@ -174,11 +173,26 @@ download = do
     file <- findFileToDownload fileName
     downloadExists file
     liftIO $ print "Found file"  
-    let tmp2 = lockExists file
-    checkLock tmp2
+    let fileLock = lockExists file
+    checkLock fileLock
     let contents = contentExists file
     downloadFile fileName contents
+    requestLockCommand
+    changeLock fileName contents fileLock
     getCommand
+
+requestLockCommand = do
+    liftIO $ print "Would you lock the file so others can't edit it?"
+    lockResponse <- liftIO getLine
+    lockOrNot lockResponse
+
+lockOrNot :: String -> Action IO ()
+lockOrNot response 
+    | response == "yes" = return ()
+    | response == "no" = getCommand
+    | otherwise =  do
+        liftIO $ print "Didn't recognise command, try again"
+        requestLockCommand
 
 downloadFile :: String -> String -> Action IO ()
 downloadFile fileName fileContents = do
@@ -217,20 +231,17 @@ checkLock lock
         liftIO $ print "There is no lock on the file"  
         return ()
 
-{-changeLock :: Document -> Bool -> Action IO ()
-changeLock fileName fileContent fileLock = 
-    | lock == True = do
-        let file = File fileName fileContents False
-        let doc = fileToDoc file
-        replace file doc
-        liftIO $ print "Lock lifted from file"  
-        getCommand
-    | lock == False = do
-        let file = File fileName fileContents True
-        let doc = fileToDoc file
-        replace file doc
+changeLock :: String -> String -> Bool -> Action IO ()
+changeLock fileName fileContent fileLock
+    | fileLock == True = return ()
+    | fileLock == False = do
+        fileToChange <- findFileToDownload fileName
+        let fileWithChange = File fileName fileContent True
+        let doc = fileToDoc fileWithChange
+        replace (select ["fileName" =: fileName] "files") doc
+        --replace fileToChange doc
         liftIO $ print "Lock applied to file"  
-        getCommand-}
+        getCommand
 
 downloadExists :: Maybe Document -> Action IO ()
 downloadExists file = case file of
@@ -253,7 +264,7 @@ printDocs title docs = do
     liftIO $ putStrLn title >> mapM_ (print . exclude ["_id"]) docs
     return()
 
-checkFilenameExists :: String -> Action IO ()--[Document]
+checkFilenameExists :: String -> Action IO ()
 checkFilenameExists name = do
     tmp <- rest =<< find (select ["fileName" =: name] "files")
     exists tmp
