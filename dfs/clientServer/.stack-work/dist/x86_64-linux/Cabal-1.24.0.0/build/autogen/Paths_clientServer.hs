@@ -30,7 +30,7 @@ version = Version [0,1,0,0] []
 bindir, libdir, datadir, libexecdir, sysconfdir :: FilePath
 
 bindir     = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/clientServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/bin"
-libdir     = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/clientServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/lib/x86_64-linux-ghc-8.0.1/clientServer-0.1.0.0-HFAItMVLQbeImhGznoevs9"
+libdir     = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/clientServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/lib/x86_64-linux-ghc-8.0.1/clientServer-0.1.0.0-DLV0f8ZBtlqAJ3yYHbtF5Y"
 datadir    = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/clientServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/share/x86_64-linux-ghc-8.0.1/clientServer-0.1.0.0"
 libexecdir = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/clientServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/libexec"
 sysconfdir = "/home/pippa/Documents/Senior Sophister/CS 4032 - Distributed Systems/Labs & Tutorials/distro/dfs/clientServer/.stack-work/install/x86_64-linux/lts-7.12/8.0.1/etc"

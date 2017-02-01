@@ -29,6 +29,7 @@ import Network.Wai
 import Network.Wai.Handler.Warp
 import Servant
 import Servant.API
+import System.Directory
 import System.IO
 import System.Environment (getArgs)
 import Text.Printf
@@ -170,23 +171,41 @@ fileToDoc (File {fileName = fN, fileContents = fC, fileLock = fL}) =
 download = do
     liftIO $ print "Enter name of file to download: "  
     fileName <- liftIO getLine
-    file <- findFile fileName
+    file <- findFileToDownload fileName
     downloadExists file
     liftIO $ print "Found file"  
     let tmp2 = lockExists file
     checkLock tmp2
+    let contents = contentExists file
+    downloadFile fileName contents
     getCommand
 
-getString :: Label -> Document -> Bool
-getString label = do
+downloadFile :: String -> String -> Action IO ()
+downloadFile fileName fileContents = do
+    filePath <- liftIO $ System.Directory.getUserDocumentsDirectory
+    let fPath = filePath ++ fileName
+    liftIO (writeFile fileName fileContents)
+    return ()
+
+contentExists :: Maybe Document -> String
+contentExists file = case file of
+    Just file -> getFileContent "fileContents" file
+    Nothing -> "File is empty"
+
+getFileContent :: Label -> Document -> String
+getFileContent label = do
+    typed . (valueAt label)
+
+getLock :: Label -> Document -> Bool
+getLock label = do
     typed . (valueAt label)  
 
-findFile :: String -> Action IO (Maybe Document)
-findFile fileName = findOne (select ["fileName" =: fileName] "files")
+findFileToDownload :: String -> Action IO (Maybe Document)
+findFileToDownload fileName = findOne (select ["fileName" =: fileName] "files")
 
 lockExists :: Maybe Document -> Bool
 lockExists file = case file of
-    Just file -> getString "fileLock" file
+    Just file -> getLock "fileLock" file
     Nothing -> False
 
 checkLock :: Bool -> Action IO ()
@@ -197,6 +216,21 @@ checkLock lock
     | lock == False = do
         liftIO $ print "There is no lock on the file"  
         return ()
+
+{-changeLock :: Document -> Bool -> Action IO ()
+changeLock fileName fileContent fileLock = 
+    | lock == True = do
+        let file = File fileName fileContents False
+        let doc = fileToDoc file
+        replace file doc
+        liftIO $ print "Lock lifted from file"  
+        getCommand
+    | lock == False = do
+        let file = File fileName fileContents True
+        let doc = fileToDoc file
+        replace file doc
+        liftIO $ print "Lock applied to file"  
+        getCommand-}
 
 downloadExists :: Maybe Document -> Action IO ()
 downloadExists file = case file of

@@ -28,6 +28,13 @@
   (major1) == 0 && (major2) <  5 || \
   (major1) == 0 && (major2) == 5 && (minor) <= 7)
 
+/* package directory-1.2.6.2 */
+#define VERSION_directory "1.2.6.2"
+#define MIN_VERSION_directory(major1,major2,minor) (\
+  (major1) <  1 || \
+  (major1) == 1 && (major2) <  2 || \
+  (major1) == 1 && (major2) == 2 && (minor) <= 6)
+
 /* package mongoDB-2.1.1.1 */
 #define VERSION_mongoDB "2.1.1.1"
 #define MIN_VERSION_mongoDB(major1,major2,minor) (\
@@ -147,7 +154,7 @@
   (major1) == 2 && (major2) <  26 || \
   (major1) == 2 && (major2) == 26 && (minor) <= 0)
 
-#define CURRENT_COMPONENT_ID "clientServer-0.1.0.0-HFAItMVLQbeImhGznoevs9"
+#define CURRENT_COMPONENT_ID "clientServer-0.1.0.0-DLV0f8ZBtlqAJ3yYHbtF5Y"
 
-#define CURRENT_PACKAGE_KEY "clientServer-0.1.0.0-HFAItMVLQbeImhGznoevs9"
+#define CURRENT_PACKAGE_KEY "clientServer-0.1.0.0-DLV0f8ZBtlqAJ3yYHbtF5Y"
 
